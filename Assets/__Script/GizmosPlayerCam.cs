@@ -10,9 +10,9 @@ public class GizmosPlayerCam : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(PlayerController.Instance.transform.position.x + GizmosX, 
-            PlayerController.Instance.transform.position.y + GizmosY, 
-            PlayerController.Instance.transform.position.z + GizmosZ);
+        transform.position = new Vector3(MainGame.Instance.playerController.transform.position.x + GizmosX, 
+            MainGame.Instance.playerController.transform.position.y + GizmosY, 
+            MainGame.Instance.playerController.transform.position.z + GizmosZ);
     }
 
     private void OnDrawGizmos()

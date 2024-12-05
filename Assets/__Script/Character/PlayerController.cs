@@ -5,7 +5,6 @@ using static UnityEditor.SceneView;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController Instance;
     public Camera Camera;
 
     public int WalkSpeed, RunSpeed;
@@ -13,10 +12,6 @@ public class PlayerController : MonoBehaviour
     int _speed;
     float _horizontalAxis, _verticalAxis;
 
-    void Awake()
-    {
-        Instance = this;
-    }
 
     private void Update()
     {

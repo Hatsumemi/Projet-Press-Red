@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public static CameraController Instance;
 
     [Space (10)][Header ("Component")]
     public Transform LookAt;
     public Transform Player;
+   
 
     [Space(10)][Header("Value")]
     public float YMin = -30.0f;
@@ -19,10 +19,8 @@ public class CameraController : MonoBehaviour
     private float currentX, currentY = 0.0f;
 
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+   
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +43,8 @@ public class CameraController : MonoBehaviour
         transform.LookAt(LookAt.position);
 
     }
+
+   
 
    
 }
