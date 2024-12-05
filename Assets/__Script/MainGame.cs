@@ -8,8 +8,9 @@ public class MainGame : MonoBehaviour
 
 
     [Header("Component To Get")]
-    public PlayerController playerController;
-    public CameraManager cameraController;
+    public PlayerController m_PlayerController;
+    public CameraManager m_CameraManager;
+    public Photography m_Photography;
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class MainGame : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            cameraController.ChangeCam();
+            m_CameraManager.ChangeCam();
 
         }
     }
