@@ -11,6 +11,7 @@ public class MainGame : MonoBehaviour
     public PlayerController m_PlayerController;
     public CameraManager m_CameraManager;
     public Photography m_Photography;
+    public GizmosPlayerCam m_GizmosPlayerCam;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class MainGame : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -32,5 +33,12 @@ public class MainGame : MonoBehaviour
             m_CameraManager.ChangeCam();
 
         }
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            m_GizmosPlayerCam.IsCrouch = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
+            m_GizmosPlayerCam.IsCrouch = false;
+
     }
 }

@@ -17,6 +17,7 @@ public class CameraManager : MonoBehaviour
     [HideInInspector] public float YMin, YMax;
     [HideInInspector] public float Distance;
     [HideInInspector] public float Sensivity;
+    [HideInInspector] public Camera FOV;
 
     [Space(10)]
     [Header("Value TPP")]
@@ -24,6 +25,7 @@ public class CameraManager : MonoBehaviour
     public float YMaxTPP;
     public float distanceTPP;
     public float sensivityTPP;
+    public float FOVTPP;
 
     [Space(10)]
     [Header("Value FPP")]
@@ -31,13 +33,16 @@ public class CameraManager : MonoBehaviour
     public float YMaxFPP;
     public float distanceFPP;
     public float sensivityFPP;
+    public float FOVFPP;
 
     void Awake()
     {
+        FOV = GetComponent<Camera>();
         YMin = YMinTPP;
         YMax = YMaxTPP;
         Distance = distanceTPP;
         Sensivity = sensivityTPP;
+        FOV.fieldOfView = FOVTPP;
     }
 
     // Update is called once per frame
@@ -58,7 +63,7 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCam()
     {
-        float min, max, distance, sensivity;
+        float min, max, distance, sensivity, fov;
 
         MainGame.Instance.m_Photography.IsActive = !MainGame.Instance.m_Photography.IsActive;
 
@@ -68,6 +73,7 @@ public class CameraManager : MonoBehaviour
             max = YMaxFPP;
             distance = distanceFPP;
             sensivity = sensivityFPP;
+            fov = FOVFPP;
         }
         else
         {
@@ -75,11 +81,13 @@ public class CameraManager : MonoBehaviour
             max = YMaxTPP;
             distance = distanceTPP;
             sensivity = sensivityTPP;
+            fov = FOVTPP;
         }
 
         DOVirtual.Float(YMin, min, ChangingDuration, (f) => YMin = f);
         DOVirtual.Float(YMax, max, ChangingDuration, (f) => YMax = f);
         DOVirtual.Float(Distance, distance, ChangingDuration, (f) => Distance = f);
         DOVirtual.Float(Sensivity, sensivity, ChangingDuration, (f) => Sensivity = f);
+        DOVirtual.Float(FOV.fieldOfView, fov, ChangingDuration, (f) => FOV.fieldOfView = f);
     }
 }

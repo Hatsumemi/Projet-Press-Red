@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public Camera Camera;
 
-    public int WalkSpeed, RunSpeed;
+    public int WalkSpeed, CrouchSpeed;
 
     int _speed;
     float _horizontalAxis, _verticalAxis;
@@ -15,21 +15,31 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _speed = WalkSpeed;
-        if ( Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            _speed = RunSpeed;
-        }
-        
-        //reading the input:
-        _horizontalAxis = Input.GetAxis("Horizontal");
-        _verticalAxis = Input.GetAxis("Vertical");
+        HandleInput();
     }
 
     void FixedUpdate()
     {
+        Movement();
+    }
 
 
+    void HandleInput()
+    {
+        _speed = WalkSpeed;
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            _speed = CrouchSpeed;
+        }
+
+        //reading the input:
+        _horizontalAxis = Input.GetAxis("Horizontal");
+        _verticalAxis = Input.GetAxis("Vertical");
+
+    }
+    void Movement()
+    {
         //assuming we only using the single camera:
         var camera = Camera;
 
@@ -39,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
         //project forward and right vectors on the horizontal plane (y = 0)
         forward.y = 0f;
-        right.y = 0f;
+        //right.y = 0f;
         forward.Normalize();
         right.Normalize();
 
