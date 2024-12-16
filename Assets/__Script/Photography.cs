@@ -72,6 +72,7 @@ public class Photography : MonoBehaviour
         Sprite PhotoSprite = Sprite.Create(_photoTakenTexture, new Rect(0.0f, 0.0f,
                                            _photoTakenTexture.width, _photoTakenTexture.height),
                                            new Vector2(0.5f, 0.5f), 100.0f);
+        PhotoSprite.name = "photo" + _photoCount;
         foreach (Image image in _photos)
         {
             if (image.sprite == null)
