@@ -9,18 +9,23 @@ using System.IO;
 public class Photography : MonoBehaviour
 {
 
-    public bool IsActive = false;
-    public bool Triggered = false;
+    [Header("Values")]
     public Camera Camera;
-    public Image Flash;
-    [SerializeField] private int _photoToTake;
+    [HideInInspector] public bool IsActive = false;
+    [HideInInspector] public bool Triggered = false;
     private int _photoCount;
     private bool _takePhoto = false;
 
 
+    [Header("Photographies")]
+    [SerializeField] private List<Image> _photos;
+    public Image Flash;
+    private Texture2D _photoTakenTexture;
+
     void Start()
     {
         Flash.color = new Color(Flash.color.r, Flash.color.g, Flash.color.b, 0f);
+        _photoTakenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
     }
 
     void Update()
@@ -29,8 +34,8 @@ public class Photography : MonoBehaviour
         {
             if (Triggered && _takePhoto == false)
             {
-                if (_photoCount < _photoToTake)
-                    TakingPhotopragy();
+                if (_photoCount < _photos.Count)
+                    StartCoroutine(Photo());
                 else
                     Debug.Log("You can't take anymore photos.");
             }
@@ -48,24 +53,34 @@ public class Photography : MonoBehaviour
         Flash.DOFade(0, 0.2f);
     }
 
+    IEnumerator Photo()
+    {
+        yield return new WaitForEndOfFrame();
+
+        Rect regionToCapture = new Rect(0, 0, Screen.width, Screen.height);
+
+        _photoTakenTexture.ReadPixels(regionToCapture, 0, 0, false);
+        _photoTakenTexture.Apply();
+        TakingPhotopragy();
+    }
+
     private void TakingPhotopragy()
     {
         Debug.Log("Screenshot taken");
         _takePhoto = true;
-        int width = Screen.width;
-        int height = Screen.height;
-        Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
 
-        // Read the screen contents into the texture
-        tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
-        tex.Apply();
+        Sprite PhotoSprite = Sprite.Create(_photoTakenTexture, new Rect(0.0f, 0.0f,
+                                           _photoTakenTexture.width, _photoTakenTexture.height),
+                                           new Vector2(0.5f, 0.5f), 100.0f);
+        foreach (Image image in _photos)
+        {
+            if (image.sprite == null)
+            {
+                image.sprite = PhotoSprite;
+                break;
+            }
+        }
 
-        // Encode the texture in JPG format
-        byte[] bytes = ImageConversion.EncodeToJPG(tex);
-        Object.Destroy(tex);
-
-        // Write the returned byte array to a file in the project folder
-        File.WriteAllBytes(Application.dataPath + "/../SavedScreen.jpg", bytes);
         StartCoroutine(WaitToPhotograph());
     }
 
