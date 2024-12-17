@@ -59,6 +59,8 @@ public class Photography : MonoBehaviour
 
         Rect regionToCapture = new Rect(0, 0, Screen.width, Screen.height);
 
+        _photoTakenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+
         _photoTakenTexture.ReadPixels(regionToCapture, 0, 0, false);
         _photoTakenTexture.Apply();
         TakingPhotopragy();
