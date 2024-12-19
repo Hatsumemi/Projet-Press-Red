@@ -24,10 +24,10 @@ public class PhotoDevelopment : MonoBehaviour
 
     void Start()
     {
-        float minutes = _timeToWithdraw / 60;
-        float seconds = _timeToWithdraw % 60;
+        float minutes = Mathf.FloorToInt(_timeToWithdraw / 60);
+        float seconds = Mathf.FloorToInt(_timeToWithdraw % 60);
 
-        string text = string.Format("{0:00} : {0:00}", minutes, seconds);
+        string text = string.Format("{0:00} : {1:00}", minutes, seconds);
         TimeText.text = text;
         TimeTextShadow.text = text;
     }
@@ -39,7 +39,7 @@ public class PhotoDevelopment : MonoBehaviour
             Developpement.gameObject.SetActive(true);
         }
 
-        if (Selected <= 0)
+        else if (Selected <= 0)
         {
             Developpement.gameObject.SetActive(false);
         }

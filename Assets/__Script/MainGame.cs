@@ -15,6 +15,10 @@ public class MainGame : MonoBehaviour
     public GizmosPlayerCam m_GizmosPlayerCam;
     public Timer m_Timer;
 
+    [Header("Other Variables")] 
+    public bool DeveloppmentIsActive = false;
+    [SerializeField] GameObject DeveloppmentObj;
+
     private void Awake()
     {
         Instance = this;
@@ -33,9 +37,13 @@ public class MainGame : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             m_CameraManager.ChangeCam();
+        }
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            DeveloppmentIsActive = !DeveloppmentIsActive;
+            DeveloppmentObj.SetActive(DeveloppmentIsActive);
         }
         
-
     }
 }
