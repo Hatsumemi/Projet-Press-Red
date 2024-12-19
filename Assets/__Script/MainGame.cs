@@ -14,6 +14,7 @@ public class MainGame : MonoBehaviour
     public PhotoDevelopment m_PhotoDevelopment;
     public GizmosPlayerCam m_GizmosPlayerCam;
     public Timer m_Timer;
+    public QTE m_QTE;
 
     [Header("Other Variables")] 
     public bool DeveloppmentIsActive = false;
