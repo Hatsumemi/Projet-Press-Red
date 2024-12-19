@@ -3,36 +3,59 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PhotoDevelopment : MonoBehaviour
 {
-    public TMP_Text TimeToDev;
+    //public TMP_Text TimeToDev;
     public Button Developpement;
     public List<char> QTELetters;
     public Image QTEImage;
+    public TMP_Text TimeText;
+    public TMP_Text TimeTextShadow;
     public TMP_Text QTEText;
-    public float QTETime;
     public Image QTESpriteTime;
-    [HideInInspector]public int Selected = 0;
-    float _timeToWithdraw;
+    public float QTETime;
+    public int TimeToDev;
+    [HideInInspector] public int Selected = 0;
+    int _timeToWithdraw = 0;
     float _failedAttempt;
-    
-
+    [HideInInspector] public int ChangingTime = 0;
 
 
     void Start()
     {
-        
+        float minutes = _timeToWithdraw / 60;
+        float seconds = _timeToWithdraw % 60;
+
+        string text = string.Format("{0:00} : {1:00}", minutes, seconds);
+        TimeText.text = text;
+        TimeTextShadow.text = text;
     }
 
     void Update()
     {
         if (Selected > 0)
-            Developpement.enabled = true;
+        {
+            Developpement.gameObject.SetActive(true);
+        }
         if (Selected <= 0)
-            Developpement.enabled = false;
+        {
+            Developpement.gameObject.SetActive(false);
+        }
+        if (_timeToWithdraw < ChangingTime)
+        {
+            _timeToWithdraw += (int)Time.deltaTime * 5;
+            ChangeTimeToDev();
+        }
+        else if (_timeToWithdraw > ChangingTime)
+        {
+            _timeToWithdraw -= (int)Time.deltaTime * 5;
+            ChangeTimeToDev();
+        }
+
     }
-    
+
     public void QTE()
     {
 
@@ -40,6 +63,17 @@ public class PhotoDevelopment : MonoBehaviour
 
     public void DevPhotos()
     {
-        MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw + _failedAttempt);
+        MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * Selected + _failedAttempt);
+    }
+
+
+    public void ChangeTimeToDev()
+    {
+        float minutes = ChangingTime / 60;
+        float seconds = ChangingTime % 60;
+
+        string text = string.Format("{0:00} : {1:00}", minutes, seconds);
+        TimeText.text = text;
+        TimeTextShadow.text = text;
     }
 }
