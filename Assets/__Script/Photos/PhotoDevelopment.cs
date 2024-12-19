@@ -17,7 +17,7 @@ public class PhotoDevelopment : MonoBehaviour
     public float QTETime;
     public int TimeToDev;
     [HideInInspector] public int Selected = 0;
-    int _timeToWithdraw = 0;
+    float _timeToWithdraw = 0;
     float _failedAttempt;
     [HideInInspector] public int ChangingTime = 0;
 
@@ -46,12 +46,12 @@ public class PhotoDevelopment : MonoBehaviour
 
         if (_timeToWithdraw < ChangingTime)
         {
-            _timeToWithdraw += (int)Time.deltaTime * 5;
+            _timeToWithdraw += Time.deltaTime * 5;
             ChangeTimeToDev();
         }
         else if (_timeToWithdraw > ChangingTime)
         {
-            _timeToWithdraw -= (int)Time.deltaTime * 5;
+            _timeToWithdraw -= Time.deltaTime * 5;
             ChangeTimeToDev();
         }
     }
@@ -63,6 +63,8 @@ public class PhotoDevelopment : MonoBehaviour
     public void DevPhotos()
     {
         MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * Selected + _failedAttempt);
+        MainGame.Instance.DeveloppmentIsActive = !MainGame.Instance.DeveloppmentIsActive;
+        MainGame.Instance.DeveloppmentObj.SetActive(MainGame.Instance.DeveloppmentIsActive);
     }
 
 

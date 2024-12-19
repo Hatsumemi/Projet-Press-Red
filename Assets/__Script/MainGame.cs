@@ -17,7 +17,7 @@ public class MainGame : MonoBehaviour
 
     [Header("Other Variables")] 
     public bool DeveloppmentIsActive = false;
-    [SerializeField] GameObject DeveloppmentObj;
+    public GameObject DeveloppmentObj;
 
     private void Awake()
     {
