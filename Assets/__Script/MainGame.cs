@@ -11,7 +11,9 @@ public class MainGame : MonoBehaviour
     public PlayerController m_PlayerController;
     public CameraManager m_CameraManager;
     public Photography m_Photography;
+    public PhotoDevelopment m_PhotoDevelopment;
     public GizmosPlayerCam m_GizmosPlayerCam;
+    public Timer m_Timer;
 
     private void Awake()
     {
