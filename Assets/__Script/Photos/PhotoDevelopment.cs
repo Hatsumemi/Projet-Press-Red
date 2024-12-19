@@ -7,7 +7,6 @@ using DG.Tweening;
 
 public class PhotoDevelopment : MonoBehaviour
 {
-    //public TMP_Text TimeToDev;
     public Button Developpement;
     public List<char> QTELetters;
     public Image QTEImage;
@@ -28,7 +27,7 @@ public class PhotoDevelopment : MonoBehaviour
         float minutes = _timeToWithdraw / 60;
         float seconds = _timeToWithdraw % 60;
 
-        string text = string.Format("{0:00} : {1:00}", minutes, seconds);
+        string text = string.Format("{0:00} : {0:00}", minutes, seconds);
         TimeText.text = text;
         TimeTextShadow.text = text;
     }
@@ -39,10 +38,12 @@ public class PhotoDevelopment : MonoBehaviour
         {
             Developpement.gameObject.SetActive(true);
         }
+
         if (Selected <= 0)
         {
             Developpement.gameObject.SetActive(false);
         }
+
         if (_timeToWithdraw < ChangingTime)
         {
             _timeToWithdraw += (int)Time.deltaTime * 5;
@@ -53,12 +54,10 @@ public class PhotoDevelopment : MonoBehaviour
             _timeToWithdraw -= (int)Time.deltaTime * 5;
             ChangeTimeToDev();
         }
-
     }
 
     public void QTE()
     {
-
     }
 
     public void DevPhotos()

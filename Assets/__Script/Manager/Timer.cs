@@ -26,17 +26,18 @@ public class Timer : MonoBehaviour
         }
         else
         {
+            updateTimer(0);   
             Time.timeScale = 0;
             Debug.Log("Time has ended. You've failed your mission.");
         }
     }
 
-    void updateTimer(float currentTime)
+    public void updateTimer(float currentTime)
     {
-        currentTime += 1;
+        
 
-        float minutes = currentTime / 60;
-        float seconds = currentTime % 60;
+        float minutes = Mathf.FloorToInt(currentTime / 60);
+        float seconds = Mathf.FloorToInt(currentTime % 60 );
 
         string text = string.Format("{0:00} : {1:00}", minutes, seconds);
 
