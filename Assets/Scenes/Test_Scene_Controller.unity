@@ -321,7 +321,6 @@ MonoBehaviour:
   GizmosY: 1.8
   GizmosZ: 0
   GizmosYCrouch: 1
-  IsCrouch: 0
 --- !u!4 &119364304
 Transform:
   m_ObjectHideFlags: 0
@@ -733,6 +732,7 @@ MonoBehaviour:
   Camera: {fileID: 1183701341}
   WalkSpeed: 5
   CrouchSpeed: 2
+  IsCrouching: 0
 --- !u!136 &635865532
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3292,7 +3292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7976394633673877945, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8843414787208045337, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_SizeDelta.x

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     int _speed;
     float _horizontalAxis, _verticalAxis;
+    [HideInInspector] public bool IsCrouching = false;
 
 
     private void Update()
@@ -30,14 +31,20 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            _speed = CrouchSpeed;
+            if (IsCrouching)
+                IsCrouching = false;
+            else
+            {
+                IsCrouching = true;
+                _speed = CrouchSpeed;
+            }
         }
 
         //reading the input:
         _horizontalAxis = Input.GetAxis("Horizontal");
         _verticalAxis = Input.GetAxis("Vertical");
-
     }
+
     void Movement()
     {
         //assuming we only using the single camera:
@@ -58,6 +65,5 @@ public class PlayerController : MonoBehaviour
 
         //now we can apply the movement:
         transform.Translate(desiredMoveDirection * _speed * Time.deltaTime);
-
     }
 }

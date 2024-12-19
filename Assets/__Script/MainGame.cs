@@ -35,12 +35,7 @@ public class MainGame : MonoBehaviour
             m_CameraManager.ChangeCam();
 
         }
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            m_GizmosPlayerCam.IsCrouch = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftControl))
-            m_GizmosPlayerCam.IsCrouch = false;
+        
 
     }
 }

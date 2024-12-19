@@ -8,11 +8,10 @@ public class GizmosPlayerCam : MonoBehaviour
     public float GizmosY;
     public float GizmosZ;
     public float GizmosYCrouch;
-    public bool IsCrouch = false;
 
     void Update()
     {
-        if (IsCrouch == false)
+        if (MainGame.Instance.m_PlayerController.IsCrouching == false)
         {
             transform.position = new Vector3(MainGame.Instance.m_PlayerController.transform.position.x + GizmosX,
                 MainGame.Instance.m_PlayerController.transform.position.y + GizmosY,
