@@ -27,13 +27,18 @@ public class QTE : MonoBehaviour
 
     void Update()
     {
-        while (_qteCount > 0)
+        QTETime -= Time.deltaTime;
+        QTESpriteTime.fillAmount = QTETime / 2;
+        for (int i = 0; i < QTELetters.Count; i++)
         {
-            while (QTETime > 0)
+            if (Input.anyKeyDown)
             {
-                QTETime -= Time.deltaTime;
-                QTESpriteTime.fillAmount = QTETime / _qteTimeMax;
-                
+                if (Input.inputString == QTELetters[i].ToString())
+                {
+                    Debug.Log(QTELetters[i]);
+                    QTETime = 0;
+                }
+
             }
 
             _qteCount--;

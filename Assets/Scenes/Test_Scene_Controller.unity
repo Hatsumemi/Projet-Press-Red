@@ -443,10 +443,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QTETime: 2
-  QTELetters: 
+  QTELetters: 00005100
   QTEText: {fileID: 104462990}
   QTEImage: {fileID: 1266098253}
   QTESpriteTime: {fileID: 1212682458}
+  NumberFailed: 0
 --- !u!1 &115467274
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,6 +850,7 @@ MonoBehaviour:
   m_PhotoDevelopment: {fileID: 1747931852880052821}
   m_GizmosPlayerCam: {fileID: 119364303}
   m_Timer: {fileID: 579379342}
+  m_QTE: {fileID: 0}
   DeveloppmentIsActive: 0
   DeveloppmentObj: {fileID: 742536364}
 --- !u!4 &579379341
