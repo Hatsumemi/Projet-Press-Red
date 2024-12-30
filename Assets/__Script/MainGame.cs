@@ -7,8 +7,7 @@ public class MainGame : MonoBehaviour
     public static MainGame Instance;
 
 
-    [Header("Component To Get")]
-    public PlayerController m_PlayerController;
+    [Header("Component To Get")] public PlayerController m_PlayerController;
     public CameraManager m_CameraManager;
     public Photography m_Photography;
     public PhotoDevelopment m_PhotoDevelopment;
@@ -16,7 +15,7 @@ public class MainGame : MonoBehaviour
     public Timer m_Timer;
     public QTE m_QTE;
 
-    [Header("Other Variables")] 
+    [Header("Other Variables")] public bool Triggered = false;
     public bool DeveloppmentIsActive = false;
     public GameObject DeveloppmentObj;
 
@@ -26,10 +25,8 @@ public class MainGame : MonoBehaviour
     }
 
 
-
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -40,11 +37,13 @@ public class MainGame : MonoBehaviour
             m_CameraManager.ChangeCam();
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Triggered)
         {
-            DeveloppmentIsActive = !DeveloppmentIsActive;
-            DeveloppmentObj.SetActive(DeveloppmentIsActive);
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                DeveloppmentIsActive = !DeveloppmentIsActive;
+                DeveloppmentObj.SetActive(DeveloppmentIsActive);
+            }
         }
-        
     }
 }

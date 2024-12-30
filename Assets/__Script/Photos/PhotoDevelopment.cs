@@ -8,11 +8,13 @@ using DG.Tweening;
 public class PhotoDevelopment : MonoBehaviour
 {
     public Button Developpement;
+    public GameObject QTEObject;
     
     public TMP_Text TimeText;
     public TMP_Text TimeTextShadow;
     
     public int TimeToDev;
+    
     [HideInInspector] public int Selected = 0;
     float _timeToWithdraw = 0;
     [SerializeField]float _malusTime;
@@ -59,6 +61,7 @@ public class PhotoDevelopment : MonoBehaviour
 
     public void DevPhotos()
     {
+        QTEObject.SetActive(true);
         MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * Selected + _malusTime * MainGame.Instance.m_QTE.NumberFailed);
         MainGame.Instance.DeveloppmentIsActive = !MainGame.Instance.DeveloppmentIsActive;
         MainGame.Instance.DeveloppmentObj.SetActive(MainGame.Instance.DeveloppmentIsActive);

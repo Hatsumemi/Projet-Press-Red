@@ -25,7 +25,7 @@ public class TriggerZone : MonoBehaviour
             if (Type == Types.Photography)
                 MainGame.Instance.m_Photography.Triggered = true;
             if (Type == Types.Development)
-                Debug.Log("Not coded yet.");
+                MainGame.Instance.Triggered = true;
         }
     }
     private void OnTriggerExit(Collider other)

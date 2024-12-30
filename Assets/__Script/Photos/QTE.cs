@@ -18,6 +18,7 @@ public class QTE : MonoBehaviour
     private bool _validated;
 
     [HideInInspector] public int NumberFailed;
+
     private void Start()
     {
         _qteCount = QTELetters.Count;
@@ -28,20 +29,28 @@ public class QTE : MonoBehaviour
     void Update()
     {
         QTETime -= Time.deltaTime;
-        QTESpriteTime.fillAmount = QTETime / 2;
-        for (int i = 0; i < QTELetters.Count; i++)
+        QTESpriteTime.fillAmount = QTETime / _qteTimeMax;
+        if (_qteCount > 0)
         {
-            if (Input.anyKeyDown)
+            if (QTETime > 0)
+                QTENext(_qteCount - 1);
+            if (QTETime <= 0)
+                QTETime = _qteTimeMax;
+        }
+    }
+
+
+    void QTENext(int i)
+    {
+        QTEText.text = QTELetters[i].ToString().ToUpper();
+        if (Input.anyKeyDown)
+        {
+            if (Input.inputString == QTELetters[i].ToString())
             {
-                if (Input.inputString == QTELetters[i].ToString())
-                {
-                    Debug.Log(QTELetters[i]);
-                    QTETime = 0;
-                }
-
+                Debug.Log(QTELetters[i]);
+                QTETime = 0;
+                _qteCount--;
             }
-
-            _qteCount--;
         }
     }
 }
