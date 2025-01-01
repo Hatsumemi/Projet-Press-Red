@@ -19,10 +19,15 @@ public class QTE : MonoBehaviour
 
     [HideInInspector] public int NumberFailed;
 
+
+    private void Awake()
+    {
+        _qteTimeMax = QTETime;
+    }
+
     private void Start()
     {
         _qteCount = QTELetters.Count;
-        _qteTimeMax = QTETime;
     }
 
 
@@ -36,6 +41,12 @@ public class QTE : MonoBehaviour
                 QTENext(_qteCount - 1);
             if (QTETime <= 0)
                 QTETime = _qteTimeMax;
+        }
+
+        else
+        {
+            MainGame.Instance.DeveloppmentObj.SetActive(false);
+            _qteCount = QTELetters.Count;
         }
     }
 
