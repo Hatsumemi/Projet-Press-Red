@@ -1481,6 +1481,50 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2263922757636101118, guid: 635b36edbfa84034a8f2cf698124ca68, type: 3}
+--- !u!1 &833953815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 833953816}
+  - component: {fileID: 833953817}
+  m_Layer: 0
+  m_Name: Spot01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &833953816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833953815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1820049382}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &833953817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833953815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1728e84ea40f9e340839be21971c95b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &909995230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7665354774655906140, guid: 36848f65e678eb14a902210525e08da0, type: 3}
@@ -3186,7 +3230,8 @@ Transform:
   m_LocalPosition: {x: 4.03, y: 5.03, z: 7.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 833953816}
   m_Father: {fileID: 1431367857}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1820049383
@@ -3201,6 +3246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b29b47b5b7a774fa1ce6705071bf96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanMove: 1
+  GizmosMovement: []
 --- !u!135 &1820049384
 SphereCollider:
   m_ObjectHideFlags: 0
