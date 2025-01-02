@@ -29,18 +29,27 @@ public class Ennemies : MonoBehaviour
             {
                 for (int i = 0; i < GizmosMovement.Count; i++)
                 {
-                    _gizmosCount++;
                     _target = GizmosMovement[i].gameObject;
+                    if (transform.position == _target.transform.position)
+                    {
+                        _gizmosCount++;
+                    }
+
                     float step = _speed * Time.deltaTime;
                     transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, step);
                 }
             }
+
             if (_gizmosCount > 0)
             {
-                for (int i = GizmosMovement.Count-1; i > 0; i--)
+                for (int i = GizmosMovement.Count - 1; i > 0; i--)
                 {
-                    _gizmosCount--;
                     _target = GizmosMovement[i].gameObject;
+                    if (transform.position == _target.transform.position)
+                    {
+                        _gizmosCount--;
+                    }
+
                     float step = _speed * Time.deltaTime;
                     transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, step);
                 }
