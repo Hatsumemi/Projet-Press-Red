@@ -44,5 +44,6 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0.17
     - _Parallax: 0.02
+    - _Smoothness: 0
     m_Colors: []
   m_BuildTextureStacks: []
