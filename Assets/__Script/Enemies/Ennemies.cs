@@ -19,6 +19,7 @@ public class Ennemies : MonoBehaviour
         if (_hasDetectedPlayer)
         {
             Debug.Log("Le joueur a été détecté.");
+            MainGame.Instance.m_PlayerController.transform.position = MainGame.Instance.RespawnPosition;
             _hasDetectedPlayer = false;
         }
 

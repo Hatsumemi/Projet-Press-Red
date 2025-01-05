@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     float _horizontalAxis, _verticalAxis;
     [HideInInspector] public bool IsCrouching = false;
 
+    private void Start()
+    {
+        MainGame.Instance.RespawnPosition = transform.position;
+    }
 
     private void Update()
     {

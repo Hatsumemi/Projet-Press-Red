@@ -15,8 +15,10 @@ public class MainGame : MonoBehaviour
     public Timer m_Timer;
     public QTE m_QTE;
 
-    [Header("Other Variables")] public bool Triggered = false;
-    public bool DeveloppmentIsActive = false;
+    [Header("Other Variables")]
+    [HideInInspector]public Vector3 RespawnPosition;
+    [HideInInspector]public bool Triggered = false;
+    [HideInInspector]public bool DeveloppmentIsActive = false;
     public GameObject DeveloppmentObj;
 
     private void Awake()
