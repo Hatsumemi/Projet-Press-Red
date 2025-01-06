@@ -6,6 +6,7 @@ using static UnityEditor.SceneView;
 
 public class PlayerController : MonoBehaviour
 {
+
     public Camera Camera;
 
     public int WalkSpeed, CrouchSpeed, RunSpeed;
@@ -14,6 +15,13 @@ public class PlayerController : MonoBehaviour
     float _horizontalAxis, _verticalAxis;
     [HideInInspector] public bool IsCrouching = false;
     [HideInInspector] public bool CanMove = true;
+
+    Animator playerAnim;
+
+    private void Awake()
+    {
+        playerAnim = GetComponent<Animator>();
+    }
 
     private void Start()
     {
@@ -39,9 +47,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (IsCrouching)
-                IsCrouching = false;
+            { IsCrouching = false;
+                playerAnim.SetBool("iscrouch", false);
+            }
+
             else
             {
+                playerAnim.SetBool("iscrouch", true);
                 IsCrouching = true;
                 _speed = CrouchSpeed;
             }
@@ -49,8 +61,11 @@ public class PlayerController : MonoBehaviour
 
         if (!IsCrouching && Input.GetKey(KeyCode.LeftShift))
         {
+            playerAnim.SetBool("isrunning", true);
             _speed = RunSpeed;
         }
+        else
+            playerAnim.SetBool("isrunning", false);
 
         //reading the input:
         _horizontalAxis = Input.GetAxis("Horizontal");
@@ -75,6 +90,8 @@ public class PlayerController : MonoBehaviour
         //this is the direction in the world space we want to move:
         var desiredMoveDirection = forward * _verticalAxis + right * _horizontalAxis;
 
+        if (desiredMoveDirection != new Vector3.zero)
+            playerAnim.SetBool("iswalking", true);
         //now we can apply the movement:
         transform.Translate(desiredMoveDirection * _speed * Time.deltaTime);
     }
