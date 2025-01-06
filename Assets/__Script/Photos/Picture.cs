@@ -7,11 +7,13 @@ using static Cinemachine.CinemachineTriggerAction.ActionSettings;
 
 public class Picture : MonoBehaviour
 {
-    [FormerlySerializedAs("Outline")] [FormerlySerializedAs("_outline")] public Outline PicOutline;
+    public Outline PicOutline;
+    [SerializeField]private Image _image;
 
     void Start()
     {
         PicOutline.enabled = false;
+        _image = GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -22,7 +24,7 @@ public class Picture : MonoBehaviour
 
     public void OnClick()
     {
-        if (PicOutline.enabled==false)
+        if (PicOutline.enabled==false && _image.sprite != null)
         {
             PicOutline.enabled = true;
             MainGame.Instance.m_PhotoDevelopment.ChangingTime += MainGame.Instance.m_PhotoDevelopment.TimeToDev;
