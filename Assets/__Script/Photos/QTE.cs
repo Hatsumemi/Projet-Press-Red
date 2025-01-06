@@ -47,6 +47,8 @@ public class QTE : MonoBehaviour
         {
             MainGame.Instance.DeveloppmentObj.SetActive(false);
             _qteCount = 0;
+            NumberFailed = 0;
+            MainGame.Instance.m_PhotoDevelopment.DevPhotos();
         }
     }
 
@@ -60,6 +62,11 @@ public class QTE : MonoBehaviour
             {
                 Debug.Log(QTELetters[i]);
                 QTETime = 0;
+                _qteCount++;
+            }
+            else
+            {
+                NumberFailed++;
                 _qteCount++;
             }
         }
