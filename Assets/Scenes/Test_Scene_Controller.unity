@@ -2495,6 +2495,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc5709d0ea8a7c44bef705ca6a3dc17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PicturesDev:
+  - {fileID: 604335263}
+  - {fileID: 403410817}
+  - {fileID: 1161535209}
+  - {fileID: 1059954572}
+  - {fileID: 641284943}
+  - {fileID: 604974161}
 --- !u!1 &975753315 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6129255006042878383, guid: 36848f65e678eb14a902210525e08da0, type: 3}

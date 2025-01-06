@@ -8,7 +8,7 @@ using static Cinemachine.CinemachineTriggerAction.ActionSettings;
 public class Picture : MonoBehaviour
 {
     public Outline PicOutline;
-    [SerializeField]private Image _image;
+    [HideInInspector]public Image _image;
 
     void Start()
     {

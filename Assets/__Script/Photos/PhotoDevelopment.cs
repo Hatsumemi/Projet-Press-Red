@@ -67,6 +67,12 @@ public class PhotoDevelopment : MonoBehaviour
         MainGame.Instance.DeveloppmentObj.SetActive(MainGame.Instance.DeveloppmentIsActive);
         foreach ( var i in PicSlected)
         {
+            foreach (var image in MainGame.Instance.m_Diary.PicturesDev)
+            {
+                if (image.sprite == null)
+                    image.sprite = i._image.sprite;
+                break;
+            }
             if (i.PicOutline.enabled == true)
                 i.PicOutline.enabled = false;
         }
