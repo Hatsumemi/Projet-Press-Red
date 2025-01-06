@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         //this is the direction in the world space we want to move:
         var desiredMoveDirection = forward * _verticalAxis + right * _horizontalAxis;
 
-        if (desiredMoveDirection != new Vector3.zero)
+        if (desiredMoveDirection != Vector3.zero)
             playerAnim.SetBool("iswalking", true);
         //now we can apply the movement:
         transform.Translate(desiredMoveDirection * _speed * Time.deltaTime);

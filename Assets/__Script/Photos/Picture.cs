@@ -27,13 +27,13 @@ public class Picture : MonoBehaviour
         if (PicOutline.enabled==false && _image.sprite != null)
         {
             PicOutline.enabled = true;
-            MainGame.Instance.m_PhotoDevelopment.ChangingTime += MainGame.Instance.m_PhotoDevelopment.TimeToDev;
+            //MainGame.Instance.m_PhotoDevelopment.ChangingTime += MainGame.Instance.m_PhotoDevelopment.TimeToDev;
             MainGame.Instance.m_PhotoDevelopment.PicSlected.Add(this);
         }
         else if (PicOutline.enabled == true)
         {
             PicOutline.enabled = false;
-            MainGame.Instance.m_PhotoDevelopment.ChangingTime -= MainGame.Instance.m_PhotoDevelopment.TimeToDev;
+            //MainGame.Instance.m_PhotoDevelopment.ChangingTime -= MainGame.Instance.m_PhotoDevelopment.TimeToDev;
             MainGame.Instance.m_PhotoDevelopment.PicSlected.Remove(this);
         }
     }

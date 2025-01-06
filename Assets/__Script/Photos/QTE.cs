@@ -17,7 +17,7 @@ public class QTE : MonoBehaviour
     float _qteTimeMax;
     private bool _validated;
 
-    [HideInInspector] public int NumberFailed;
+    //[HideInInspector] public int NumberFailed;
 
 
     private void Awake()
@@ -46,7 +46,7 @@ public class QTE : MonoBehaviour
         else
         {
             _qteCount = 0;
-            NumberFailed = 0;
+            //NumberFailed = 0;
             MainGame.Instance.m_PhotoDevelopment.DevPhotos();
         }
     }
@@ -65,7 +65,7 @@ public class QTE : MonoBehaviour
             }
             else
             {
-                NumberFailed++;
+                //NumberFailed++;
                 _qteCount++;
             }
         }

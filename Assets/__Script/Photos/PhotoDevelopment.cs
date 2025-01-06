@@ -10,18 +10,18 @@ public class PhotoDevelopment : MonoBehaviour
     public Button Developpement;
     public GameObject QTEObject;
     
-    public TMP_Text TimeText;
-    public TMP_Text TimeTextShadow;
+    //public TMP_Text TimeText;
+    //public TMP_Text TimeTextShadow;
     
-    public int TimeToDev;
+    //public int TimeToDev;
     
-    float _timeToWithdraw = 0;
-    [SerializeField]float _malusTime;
-    [HideInInspector] public int ChangingTime = 0; 
+    //float _timeToWithdraw = 0;
+    //[SerializeField]float _malusTime;
+    //[HideInInspector] public int ChangingTime = 0; 
     public List<Picture> PicSlected;
 
 
-    void Start()
+    /*void Start()
     {
         float minutes = Mathf.FloorToInt(_timeToWithdraw / 60);
         float seconds = Mathf.FloorToInt(_timeToWithdraw % 60);
@@ -29,7 +29,7 @@ public class PhotoDevelopment : MonoBehaviour
         string text = string.Format("{0:00} : {1:00}", minutes, seconds);
         TimeText.text = text;
         TimeTextShadow.text = text;
-    }
+    }*/
 
     void Update()
     {
@@ -43,16 +43,16 @@ public class PhotoDevelopment : MonoBehaviour
             Developpement.gameObject.SetActive(false);
         }
 
-        if (_timeToWithdraw < ChangingTime)
-        {
-            _timeToWithdraw += Time.deltaTime ;
-            ChangeTimeToDev();
-        }
-        else if (_timeToWithdraw > ChangingTime)
-        {
-            _timeToWithdraw -= Time.deltaTime ;
-            ChangeTimeToDev();
-        }
+        // if (_timeToWithdraw < ChangingTime)
+        // {
+        //     _timeToWithdraw += Time.deltaTime ;
+        //     ChangeTimeToDev();
+        // }
+        // else if (_timeToWithdraw > ChangingTime)
+        // {
+        //     _timeToWithdraw -= Time.deltaTime ;
+        //     ChangeTimeToDev();
+        // }
     }
 
     public void QTE()
@@ -62,7 +62,7 @@ public class PhotoDevelopment : MonoBehaviour
 
     public void DevPhotos()
     {
-        MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * PicSlected.Count + _malusTime * MainGame.Instance.m_QTE.NumberFailed);
+        //MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * PicSlected.Count + _malusTime * MainGame.Instance.m_QTE.NumberFailed);
         MainGame.Instance.DeveloppmentIsActive = !MainGame.Instance.DeveloppmentIsActive;
         MainGame.Instance.DeveloppmentObj.SetActive(MainGame.Instance.DeveloppmentIsActive);
         foreach ( var i in PicSlected)
@@ -81,7 +81,7 @@ public class PhotoDevelopment : MonoBehaviour
     }
 
 
-    public void ChangeTimeToDev()
+    /*public void ChangeTimeToDev()
     {
         float minutes = ChangingTime / 60;
         float seconds = ChangingTime % 60;
@@ -89,5 +89,5 @@ public class PhotoDevelopment : MonoBehaviour
         string text = string.Format("{0:00} : {1:00}", minutes, seconds);
         TimeText.text = text;
         TimeTextShadow.text = text;
-    }
+    }*/
 }
