@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public Camera Camera;
 
-    public int WalkSpeed, CrouchSpeed;
+    public int WalkSpeed, CrouchSpeed, RunSpeed;
 
     int _speed;
     float _horizontalAxis, _verticalAxis;
@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
                 IsCrouching = true;
                 _speed = CrouchSpeed;
             }
+        }
+
+        if (!IsCrouching && Input.GetKey(KeyCode.LeftShift))
+        {
+            _speed = RunSpeed;
         }
 
         //reading the input:
