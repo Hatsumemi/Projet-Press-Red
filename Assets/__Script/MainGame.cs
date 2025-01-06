@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class MainGame : MonoBehaviour
 {
@@ -16,7 +18,8 @@ public class MainGame : MonoBehaviour
     public QTE m_QTE;
     public Diary m_Diary;
 
-    [Header("Other Variables")]
+    [Header("Other Variables")] 
+    public Image Fading;
     [HideInInspector]public Vector3 RespawnPosition;
     [HideInInspector]public bool Triggered = false;
     [HideInInspector]public bool DeveloppmentIsActive = false;
@@ -27,11 +30,13 @@ public class MainGame : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Fading.DOFade(0, 1);
     }
 
 
     void Start()
     {
+        m_Diary.ValidatingButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
