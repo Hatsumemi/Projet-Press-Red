@@ -14,12 +14,15 @@ public class MainGame : MonoBehaviour
     public GizmosPlayerCam m_GizmosPlayerCam;
     public Timer m_Timer;
     public QTE m_QTE;
+    public Diary m_Diary;
 
     [Header("Other Variables")]
     [HideInInspector]public Vector3 RespawnPosition;
     [HideInInspector]public bool Triggered = false;
     [HideInInspector]public bool DeveloppmentIsActive = false;
-    public GameObject DeveloppmentObj;
+    public GameObject DeveloppmentObj;    
+    [HideInInspector]public bool DiaryIsActive = false;
+    public GameObject Diary;
 
     private void Awake()
     {
@@ -37,6 +40,12 @@ public class MainGame : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             m_CameraManager.ChangeCam();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            DiaryIsActive = !DiaryIsActive;
+            Diary.SetActive(DiaryIsActive);
         }
 
         if (Triggered)
