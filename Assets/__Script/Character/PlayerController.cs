@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     int _speed;
     float _horizontalAxis, _verticalAxis;
     [HideInInspector] public bool IsCrouching = false;
+    [HideInInspector] public bool CanMove = true;
 
     private void Start()
     {
@@ -21,7 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandleInput();
+        if (CanMove)
+            HandleInput();
     }
 
     void FixedUpdate()

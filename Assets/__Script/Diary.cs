@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,17 +7,22 @@ using UnityEngine.UI;
 public class Diary : MonoBehaviour
 {
     public List<Image> PicturesDev;
-    void Start()
+
+    
+
+    public void CheckImages()
     {
-        
+        foreach (var image in PicturesDev)
+        {
+            if (image.sprite != null)
+            {
+                image.gameObject.SetActive(true);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ValidateObjective()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            gameObject.SetActive(false);
-        }
+        
     }
 }

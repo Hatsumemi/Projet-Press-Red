@@ -44,8 +44,10 @@ public class MainGame : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.J))
         {
+            m_Diary.CheckImages();
             DiaryIsActive = !DiaryIsActive;
             Diary.SetActive(DiaryIsActive);
+            m_PlayerController.CanMove = !DiaryIsActive;
         }
 
         if (Triggered)
@@ -54,6 +56,7 @@ public class MainGame : MonoBehaviour
             {
                 DeveloppmentIsActive = !DeveloppmentIsActive;
                 DeveloppmentObj.SetActive(DeveloppmentIsActive);
+                m_PlayerController.CanMove = !DeveloppmentIsActive;
             }
         }
     }

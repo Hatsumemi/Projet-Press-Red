@@ -5,31 +5,23 @@ using DG.Tweening;
 
 public class CameraManager : MonoBehaviour
 {
-    [Space(10)]
-    [Header("Component")]
-    public Transform LookAt;
+    [Space(10)] [Header("Component")] public Transform LookAt;
     public Transform Player;
 
-    [Space(10)]
-    [Header("Global Value")]
-    public float ChangingDuration; //duration to change between cam TPP and cam FPP
+    [Space(10)] [Header("Global Value")] public float ChangingDuration; //duration to change between cam TPP and cam FPP
     private float currentX, currentY = 0.0f;
     [HideInInspector] public float YMin, YMax;
     [HideInInspector] public float Distance;
     [HideInInspector] public float Sensivity;
     [HideInInspector] public Camera FOV;
 
-    [Space(10)]
-    [Header("Value TPP")]
-    public float YMinTPP;
+    [Space(10)] [Header("Value TPP")] public float YMinTPP;
     public float YMaxTPP;
     public float distanceTPP;
     public float sensivityTPP;
     public float FOVTPP;
 
-    [Space(10)]
-    [Header("Value FPP")]
-    public float YMinFPP;
+    [Space(10)] [Header("Value FPP")] public float YMinFPP;
     public float YMaxFPP;
     public float distanceFPP;
     public float sensivityFPP;
@@ -48,17 +40,19 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        currentX += Input.GetAxis("Mouse X") * Sensivity * Time.deltaTime;
-        currentY += -Input.GetAxis("Mouse Y") * Sensivity * Time.deltaTime;
+        if (MainGame.Instance.m_PlayerController.CanMove)
+        {
+            currentX += Input.GetAxis("Mouse X") * Sensivity * Time.deltaTime;
+            currentY += -Input.GetAxis("Mouse Y") * Sensivity * Time.deltaTime;
 
-        currentY = Mathf.Clamp(currentY, YMin, YMax);
+            currentY = Mathf.Clamp(currentY, YMin, YMax);
 
-        Vector3 Direction = new Vector3(0, 0, -Distance);
-        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-        transform.position = LookAt.position + rotation * Direction;
+            Vector3 Direction = new Vector3(0, 0, -Distance);
+            Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
+            transform.position = LookAt.position + rotation * Direction;
 
-        transform.LookAt(LookAt.position);
-
+            transform.LookAt(LookAt.position);
+        }
     }
 
     public void ChangeCam()
