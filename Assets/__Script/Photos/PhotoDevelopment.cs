@@ -15,10 +15,10 @@ public class PhotoDevelopment : MonoBehaviour
     
     public int TimeToDev;
     
-    [HideInInspector] public int Selected = 0;
     float _timeToWithdraw = 0;
     [SerializeField]float _malusTime;
-    [HideInInspector] public int ChangingTime = 0;
+    [HideInInspector] public int ChangingTime = 0; 
+    public List<Picture> PicSlected;
 
 
     void Start()
@@ -33,12 +33,12 @@ public class PhotoDevelopment : MonoBehaviour
 
     void Update()
     {
-        if (Selected > 0)
+        if (PicSlected.Count > 0)
         {
             Developpement.gameObject.SetActive(true);
         }
 
-        else if (Selected <= 0)
+        else if (PicSlected.Count <= 0)
         {
             Developpement.gameObject.SetActive(false);
         }
@@ -62,9 +62,16 @@ public class PhotoDevelopment : MonoBehaviour
 
     public void DevPhotos()
     {
-        MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * Selected + _malusTime * MainGame.Instance.m_QTE.NumberFailed);
+        MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * PicSlected.Count + _malusTime * MainGame.Instance.m_QTE.NumberFailed);
         MainGame.Instance.DeveloppmentIsActive = !MainGame.Instance.DeveloppmentIsActive;
         MainGame.Instance.DeveloppmentObj.SetActive(MainGame.Instance.DeveloppmentIsActive);
+        foreach ( var i in PicSlected)
+        {
+            if (i.PicOutline.enabled == true)
+                i.PicOutline.enabled = false;
+        }
+        PicSlected.Clear();
+        QTEObject.SetActive(false);
     }
 
 
