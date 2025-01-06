@@ -57,11 +57,11 @@ public class PhotoDevelopment : MonoBehaviour
 
     public void QTE()
     {
+        QTEObject.SetActive(true);
     }
 
     public void DevPhotos()
     {
-        QTEObject.SetActive(true);
         MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * Selected + _malusTime * MainGame.Instance.m_QTE.NumberFailed);
         MainGame.Instance.DeveloppmentIsActive = !MainGame.Instance.DeveloppmentIsActive;
         MainGame.Instance.DeveloppmentObj.SetActive(MainGame.Instance.DeveloppmentIsActive);

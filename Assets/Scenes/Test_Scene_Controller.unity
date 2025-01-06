@@ -3512,7 +3512,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1747931852880052821}
         m_TargetAssemblyTypeName: PhotoDevelopment, Assembly-CSharp
-        m_MethodName: DevPhotos
+        m_MethodName: QTE
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

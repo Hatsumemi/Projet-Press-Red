@@ -27,7 +27,7 @@ public class QTE : MonoBehaviour
 
     private void Start()
     {
-        _qteCount = QTELetters.Count;
+        _qteCount = 0;
     }
 
 
@@ -35,10 +35,10 @@ public class QTE : MonoBehaviour
     {
         QTETime -= Time.deltaTime;
         QTESpriteTime.fillAmount = QTETime / _qteTimeMax;
-        if (_qteCount > 0)
+        if (_qteCount < QTELetters.Count)
         {
             if (QTETime > 0)
-                QTENext(_qteCount - 1);
+                QTENext(_qteCount);
             if (QTETime <= 0)
                 QTETime = _qteTimeMax;
         }
@@ -46,7 +46,7 @@ public class QTE : MonoBehaviour
         else
         {
             MainGame.Instance.DeveloppmentObj.SetActive(false);
-            _qteCount = QTELetters.Count;
+            _qteCount = 0;
         }
     }
 
@@ -60,7 +60,7 @@ public class QTE : MonoBehaviour
             {
                 Debug.Log(QTELetters[i]);
                 QTETime = 0;
-                _qteCount--;
+                _qteCount++;
             }
         }
     }
