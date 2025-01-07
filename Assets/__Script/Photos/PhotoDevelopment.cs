@@ -77,6 +77,7 @@ public class PhotoDevelopment : MonoBehaviour
                 i.PicOutline.enabled = false;
         }
         PicSlected.Clear();
+        MainGame.Instance.m_PlayerController.CanMove = true;
         QTEObject.SetActive(false);
     }
 
