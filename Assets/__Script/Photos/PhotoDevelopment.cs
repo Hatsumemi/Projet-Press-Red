@@ -63,7 +63,7 @@ public class PhotoDevelopment : MonoBehaviour
     public void DevPhotos()
     {
         //MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * PicSlected.Count + _malusTime * MainGame.Instance.m_QTE.NumberFailed);
-        MainGame.Instance.DeveloppmentIsActive = !MainGame.Instance.DeveloppmentIsActive;
+        MainGame.Instance.DeveloppmentIsActive = false;
         MainGame.Instance.DeveloppmentObj.SetActive(MainGame.Instance.DeveloppmentIsActive);
         foreach ( var i in PicSlected)
         {

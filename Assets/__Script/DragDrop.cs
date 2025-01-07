@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using Unity.VisualScripting;
-using static UnityEditor.Progress;
+//using Unity.VisualScripting;
+//using static UnityEditor.Progress;
 
 public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {

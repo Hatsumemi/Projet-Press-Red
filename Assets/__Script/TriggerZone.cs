@@ -41,6 +41,7 @@ public class TriggerZone : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         MainGame.Instance.m_Photography.Triggered = false;
+        MainGame.Instance.Triggered = false;
         MainGame.Instance.TextPhoto.gameObject.SetActive(false);
         MainGame.Instance.TextDev.gameObject.SetActive(false);
     }
