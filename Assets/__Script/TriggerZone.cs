@@ -23,9 +23,16 @@ public class TriggerZone : MonoBehaviour
         if (other != null && other.gameObject == Player)
         {
             if (Type == Types.Photography)
+            {
+                Debug.Log("Hiiii");
                 MainGame.Instance.m_Photography.Triggered = true;
+            }
+
             if (Type == Types.Development)
+            {
+                Debug.Log("Hellow");
                 MainGame.Instance.Triggered = true;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
