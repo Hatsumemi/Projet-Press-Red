@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: GizmosY
       value: 0.64
       objectReference: {fileID: 0}
+    - target: {fileID: 2541197148169773355, guid: 236208d26f0629a4e9d36e9154c577d0, type: 3}
+      propertyPath: GizmosYCrouch
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 3478232679890117238, guid: 236208d26f0629a4e9d36e9154c577d0, type: 3}
       propertyPath: m_Name
       value: GizmoCam

@@ -31,7 +31,10 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (CanMove)
+        {
             HandleInput();
+            
+        }
     }
 
     void FixedUpdate()
@@ -74,25 +77,33 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
-        //assuming we only using the single camera:
         var camera = Camera;
 
-        //camera forward and right vectors:
         var forward = camera.transform.forward;
         var right = camera.transform.right;
 
-        //project forward and right vectors on the horizontal plane (y = 0)
         forward.y = 0f;
-        //right.y = 0f;
+        right.y = 0f;
         forward.Normalize();
         right.Normalize();
-
-        //this is the direction in the world space we want to move:
+        
         var desiredMoveDirection = forward * _verticalAxis + right * _horizontalAxis;
 
         if (desiredMoveDirection != Vector3.zero)
             playerAnim.SetBool("iswalking", true);
-        //now we can apply the movement:
-        transform.Translate(desiredMoveDirection * _speed * Time.deltaTime);
+        else 
+            playerAnim.SetBool("iswalking", false);
+        transform.Translate(desiredMoveDirection * Time.deltaTime * _speed, Space.World);
+        RotatePlayerToCamera(desiredMoveDirection);
+    }
+    
+    void RotatePlayerToCamera(Vector3 moveDirection)
+    {
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+        
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
     }
 }
