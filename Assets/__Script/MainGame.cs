@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class MainGame : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class MainGame : MonoBehaviour
     public Diary m_Diary;
 
     [Header("Other Variables")]
+    public TMP_Text TextPhoto;
+    public TMP_Text TextDev;
     public GameObject MainCam;
     public GameObject CamCinematic;
     public Image Fading, FadingRed;
@@ -51,6 +54,7 @@ public class MainGame : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             m_CameraManager.ChangeCam();
+            TextPhoto.enabled = !MainGame.Instance.m_Photography.IsActive;
         }
         
         if (Input.GetKeyDown(KeyCode.J))
