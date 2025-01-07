@@ -9773,7 +9773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -491, y: -326}
+  m_AnchoredPosition: {x: -491, y: -351}
   m_SizeDelta: {x: 500, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299485729
@@ -9832,7 +9832,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 3
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -18363,7 +18363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -499, y: 286}
+  m_AnchoredPosition: {x: -499, y: 272}
   m_SizeDelta: {x: 500, y: 169.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &615053058
@@ -18386,7 +18386,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Photographier la recontre entre nikolei et dimitri.
+  m_text: Photographing the meeting between Nikolei and Dimitri.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b0f6c7f4d22d6e4ab7f5d897efea69a, type: 2}
   m_sharedMaterial: {fileID: -8113546688685032807, guid: 2b0f6c7f4d22d6e4ab7f5d897efea69a, type: 2}
@@ -34594,8 +34594,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6722720044609402856, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_text
-      value: "\tAccording to Mika, Nikolei must meet Dimitri despite his claims to
-        be far from the regime.\r\n\r\n"
+      value: "\tAccording to Mikai, Nikolei must meet Dimitri despite his claims
+        to be far from the regime.\r\n\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6722720044609402856, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_fontSize
@@ -34615,7 +34615,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: bf8e52e757702a64e9fb1c489b76fbe1, type: 2}
     - target: {fileID: 6722720044609402856, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_fontStyle
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6722720044609402856, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_fontSizeBase
