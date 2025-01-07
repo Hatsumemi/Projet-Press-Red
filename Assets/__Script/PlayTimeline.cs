@@ -8,15 +8,22 @@ using Unity.VisualScripting;
 public class PlayTimeline : MonoBehaviour
 {
     // Glissez ici votre timeline
-    public PlayableDirector playableDirector;
+    public GameObject MainCam;
+    public GameObject CamCinematic;
     void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            playableDirector.Play();
+            MainCam.SetActive(false);
         }
 
+    }
+
+    IEnumerator WaitToChangCam()
+    {
+        yield return new WaitForSeconds(1);
+        CamCinematic.SetActive(true);
     }
  
 

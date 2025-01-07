@@ -10,7 +10,7 @@ public class Diary : MonoBehaviour
     public List<Image> PicturesDev;
     public Button ValidatingButton;
     public Image Objective;
-    
+
 
     public void CheckImages()
     {
@@ -22,9 +22,29 @@ public class Diary : MonoBehaviour
             }
         }
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            OkCheck();
+        }
+
+    }
 
     public void OkCheck()
     {
+        MainGame.Instance.Fading.enabled = true;
         MainGame.Instance.Fading.DOFade(1, 2);
+        StartCoroutine(WaitToChangCam());
+    }
+
+
+    IEnumerator WaitToChangCam()
+    {
+        yield return new WaitForSeconds(2);
+        MainGame.Instance.CamCinematic.SetActive(false);
+        MainGame.Instance.Fading.enabled = false;
+        MainGame.Instance.CamCinematic.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

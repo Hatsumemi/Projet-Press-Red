@@ -18,7 +18,9 @@ public class MainGame : MonoBehaviour
     public QTE m_QTE;
     public Diary m_Diary;
 
-    [Header("Other Variables")] 
+    [Header("Other Variables")]
+    public GameObject MainCam;
+    public GameObject CamCinematic;
     public Image Fading, FadingRed;
     [HideInInspector]public Vector3 RespawnPosition;
     [HideInInspector]public bool Triggered = false;
@@ -33,6 +35,8 @@ public class MainGame : MonoBehaviour
         Fading.DOFade(0, 1);
         FadingRed.DOFade(0, 1);
         StartCoroutine(WaitToDisappear());
+        MainCam.SetActive(true);
+        CamCinematic.SetActive(false);
     }
 
 
