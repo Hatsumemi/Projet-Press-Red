@@ -6,21 +6,11 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private Collider _playerCollider;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other == MainGame.Instance.m_PlayerController.GetComponent<Collider>())
+        if (other == _playerCollider)
         {
             MainGame.Instance.RespawnPosition = transform.position;
         }

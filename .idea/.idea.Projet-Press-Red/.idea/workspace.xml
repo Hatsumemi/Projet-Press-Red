@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="45f96a9d-cca1-4148-b0ca-7ed7ac2787ff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Projet-Press-Red/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Projet-Press-Red/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/inna001f.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/inna001f.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test_Scene_Controller.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test_Scene_Controller.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/__Script/Character/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Script/Character/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/__Script/Enemies/Ennemies.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Script/Enemies/Ennemies.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/__Script/MainGame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/__Script/MainGame.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +18,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../PlanktonProject/Assets/Scripts/Menu/MainMenu.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -65,10 +68,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="15316">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="15316" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -105,24 +108,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/__Script/Photos/QTE.cs</url>
-          <line>40</line>
-          <properties documentPath="C:\Users\judga\Documents\Projet-Press-Red\Assets\__Script\Photos\QTE.cs" initialLine="40" containingFunctionPresentation="Method 'QTENext'">
-            <startOffsets>
-              <option value="824" />
-            </startOffsets>
-            <endOffsets>
-              <option value="874" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -19,7 +19,7 @@ public class MainGame : MonoBehaviour
     public Diary m_Diary;
 
     [Header("Other Variables")] 
-    public Image Fading;
+    public Image Fading, FadingRed;
     [HideInInspector]public Vector3 RespawnPosition;
     [HideInInspector]public bool Triggered = false;
     [HideInInspector]public bool DeveloppmentIsActive = false;
@@ -31,6 +31,8 @@ public class MainGame : MonoBehaviour
     {
         Instance = this;
         Fading.DOFade(0, 1);
+        FadingRed.DOFade(0, 1);
+        StartCoroutine(WaitToDisappear());
     }
 
 
@@ -64,5 +66,13 @@ public class MainGame : MonoBehaviour
                 m_PlayerController.CanMove = !DeveloppmentIsActive;
             }
         }
+    }
+
+
+    IEnumerator WaitToDisappear()
+    {
+        yield return new WaitForSeconds(1);
+        Fading.enabled = false;
+        FadingRed.enabled = false;
     }
 }

@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using DG.Tweening;
 
 public class Ennemies : MonoBehaviour
 {
     public bool CanMove;
     public List<GizmoToMove> GizmosMovement;
+    
     [SerializeField] private float _speed;
+    [SerializeField] private Collider _playerCollider;
+    
     private bool _hasDetectedPlayer = false;
     private bool _onFirstRound = true;
     private GameObject _target;
@@ -46,29 +50,49 @@ public class Ennemies : MonoBehaviour
             {
                 if (_onFirstRound)
                 {
-                    _currentWaypointIndex++; 
+                    _currentWaypointIndex++;
                     if (_currentWaypointIndex == GizmosMovement.Count)
                     {
-                        _onFirstRound = false; 
+                        _onFirstRound = false;
                     }
                 }
                 else if (_onFirstRound == false)
                 {
-                    _currentWaypointIndex--; 
-                    if (_currentWaypointIndex == 0) 
+                    _currentWaypointIndex--;
+                    if (_currentWaypointIndex == 0)
                     {
-                        _onFirstRound = true; 
+                        _onFirstRound = true;
                     }
                 }
             }
-        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other == MainGame.Instance.m_PlayerController.GetComponent<Collider>())
+        if (other == _playerCollider)
         {
-            _hasDetectedPlayer = true;
+            MainGame.Instance.FadingRed.enabled = true;
+            MainGame.Instance.FadingRed.DOFade(1, 0.5f);
+            StartCoroutine(WaitToRespawn());
         }
+            
     }
+
+    IEnumerator WaitToRespawn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        MainGame.Instance.FadingRed.DOFade(0.5f, 0.3f);
+        yield return new WaitForSeconds(0.3f);
+        MainGame.Instance.FadingRed.DOFade(1f, 0.3f);
+        yield return new WaitForSeconds(0.3f);
+        MainGame.Instance.FadingRed.DOFade(0.5f, 0.3f);
+        yield return new WaitForSeconds(0.3f);
+        MainGame.Instance.FadingRed.DOFade(1f, 0.3f);
+        yield return new WaitForSeconds(0.3f);
+        MainGame.Instance.m_PlayerController.transform.position = MainGame.Instance.RespawnPosition;
+        MainGame.Instance.FadingRed.DOFade(0, 0.2f);
+        yield return new WaitForSeconds(0.2f);
+        MainGame.Instance.FadingRed.enabled = false;
+    }
+    
 }
