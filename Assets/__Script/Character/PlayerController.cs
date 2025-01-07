@@ -51,12 +51,12 @@ public class PlayerController : MonoBehaviour
         {
             if (IsCrouching)
             { IsCrouching = false;
-                playerAnim.SetBool("iscrouch", false);
+                playerAnim.SetBool("iscrouchwalk", false);
             }
 
             else
             {
-                playerAnim.SetBool("iscrouch", true);
+                playerAnim.SetBool("iscrouchwalk", true);
                 IsCrouching = true;
                 _speed = CrouchSpeed;
             }
@@ -93,6 +93,11 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("iswalking", true);
         else 
             playerAnim.SetBool("iswalking", false);
+        if (desiredMoveDirection == Vector3.zero && IsCrouching)
+            playerAnim.SetBool("iscrouch", true);
+        else
+            playerAnim.SetBool("iscrouch", false);
+
         transform.Translate(desiredMoveDirection * Time.deltaTime * _speed, Space.World);
         RotatePlayerToCamera(desiredMoveDirection);
     }
