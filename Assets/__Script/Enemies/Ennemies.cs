@@ -71,6 +71,7 @@ public class Ennemies : MonoBehaviour
     {
         if (other == _playerCollider)
         {
+            _playerCollider.gameObject.transform.parent.GetComponent<PlayerController>().CanMove = false;
             MainGame.Instance.FadingRed.enabled = true;
             MainGame.Instance.FadingRed.DOFade(1, 0.5f);
             StartCoroutine(WaitToRespawn());
@@ -93,6 +94,7 @@ public class Ennemies : MonoBehaviour
         MainGame.Instance.FadingRed.DOFade(0, 0.2f);
         yield return new WaitForSeconds(0.2f);
         MainGame.Instance.FadingRed.enabled = false;
+        _playerCollider.gameObject.transform.parent.GetComponent<PlayerController>().CanMove = true;
     }
-    
+
 }

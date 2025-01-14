@@ -32,14 +32,30 @@ public class PlayerController : MonoBehaviour
     {
         if (CanMove)
         {
+
             HandleInput();
             
+        }
+
+        if (!CanMove)
+        {
+            // set false all deplacement or crouch anim when the player can't move
+            if (playerAnim.GetBool("iswalking") == true || playerAnim.GetBool("iswalking") == true || playerAnim.GetBool("iscrouch") == true || playerAnim.GetBool("iscrouchwalk") == true || playerAnim.GetBool("isrunning") == true)
+            {
+                playerAnim.SetBool("iswalking", false);
+                playerAnim.SetBool("iscrouch", false);
+                playerAnim.SetBool("iscrouchwalk", false);
+                playerAnim.SetBool("isrunning", false);
+            }
         }
     }
 
     void FixedUpdate()
     {
-        Movement();
+        if (CanMove)
+        {
+            Movement();
+        }
     }
 
 
