@@ -7,6 +7,7 @@ using static Cinemachine.CinemachineTriggerAction.ActionSettings;
 
 public class Picture : MonoBehaviour
 {
+    public bool HasObjectiveIn = false;
     public Outline PicOutline;
     [HideInInspector]public Image _image;
 

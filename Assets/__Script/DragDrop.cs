@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-//using Unity.VisualScripting;
-//using static UnityEditor.Progress;
 
 public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    
+    public bool HasObjectiveIn = false;
+
     private Vector3 originalPosition;
     private float _targetXMax; 
     private float _targetXMin; 
@@ -17,10 +18,10 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     private void Awake()
     {
-        _targetXMax = MainGame.Instance.m_Diary.Objective.transform.position.x + 192;
-        _targetXMin = MainGame.Instance.m_Diary.Objective.transform.position.x - 192; 
-        _targetYMax = MainGame.Instance.m_Diary.Objective.transform.position.y + 108; 
-        _targetYMin = MainGame.Instance.m_Diary.Objective.transform.position.y - 108;
+        _targetXMax = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().Objective.transform.position.x + 192;
+        _targetXMin = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().Objective.transform.position.x - 192; 
+        _targetYMax = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().Objective.transform.position.y + 108; 
+        _targetYMin = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().Objective.transform.position.y - 108;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -39,8 +40,8 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         if (_targetXMin < transform.position.x && transform.position.x < _targetXMax &&
             _targetYMin < transform.position.y && transform.position.y < _targetYMax)
         {
-            transform.position = MainGame.Instance.m_Diary.Objective.transform.position;
-            MainGame.Instance.m_Diary.ValidatingButton.gameObject.SetActive(true);
+            transform.position = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().Objective.transform.position;
+            MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().ValidatingButton.gameObject.SetActive(true);
         }
 
         else

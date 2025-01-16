@@ -45,7 +45,7 @@ public class MainGame : MonoBehaviour
 
     void Start()
     {
-        m_Diary.ValidatingButton.gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -59,7 +59,7 @@ public class MainGame : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.J))
         {
-            m_Diary.CheckImages();
+            m_Diary.Pages[m_Diary.PageOn].GetComponent<DiaryMission>().CheckImages();
             DiaryIsActive = !DiaryIsActive;
             Diary.SetActive(DiaryIsActive);
             m_PlayerController.CanMove = !DiaryIsActive;

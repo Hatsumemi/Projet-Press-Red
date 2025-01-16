@@ -18,9 +18,11 @@ public class Photography : MonoBehaviour
 
 
     [Header("Photographies")]
-    [SerializeField] private List<Image> _photos;
+    public GameObject Objetive;
     public Image Flash;
+    [SerializeField] private List<Image> _photos;
     private Texture2D _photoTakenTexture;
+    private bool _objectiveIsOn = false;
 
     void Start()
     {
@@ -56,8 +58,10 @@ public class Photography : MonoBehaviour
     IEnumerator Photo()
     {
         yield return new WaitForEndOfFrame();
+        if (Objetive.GetComponent<Renderer>().isVisible)
+             _objectiveIsOn = true;
 
-        Rect regionToCapture = new Rect(0, 0, Screen.width, Screen.height);
+    Rect regionToCapture = new Rect(0, 0, Screen.width, Screen.height);
 
         _photoTakenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
 
@@ -80,9 +84,12 @@ public class Photography : MonoBehaviour
             if (image.sprite == null)
             {
                 image.sprite = PhotoSprite;
+                if (_objectiveIsOn)
+                    image.GetComponent<Picture>().HasObjectiveIn = true;
                 break;
             }
         }
+        _objectiveIsOn = false;
 
         StartCoroutine(WaitToPhotograph());
     }

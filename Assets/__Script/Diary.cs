@@ -1,50 +1,52 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
 
 public class Diary : MonoBehaviour
 {
-    public List<Image> PicturesDev;
-    public Button ValidatingButton;
-    public Image Objective;
+    public List<GameObject> Pages;
+
+    [SerializeField] GameObject PreviousArrow;
+    [SerializeField] GameObject NextArrow;
+
+    public int PageOn = 0;
 
 
-    public void CheckImages()
+    void Start()
     {
-        foreach (var image in PicturesDev)
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (PageOn == 0)
+            PreviousArrow.SetActive(false);
+
+        else if (PageOn == Pages.Count - 1)
+            NextArrow.SetActive(false);
+
+        else
         {
-            if (image.sprite != null)
-            {
-                image.gameObject.SetActive(true);
-            }
+            PreviousArrow.SetActive(true);
+            NextArrow.SetActive(true);
         }
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            OkCheck();
-        }
 
+
+    public void NextPage()
+    {
+        Pages[PageOn].SetActive(false);
+        PageOn++;
+        Pages[PageOn].SetActive(true);
+        Pages[PageOn].GetComponent<DiaryMission>().CheckImages();
     }
 
-    public void OkCheck()
+    public void PreviousPage()
     {
-        MainGame.Instance.Fading.enabled = true;
-        MainGame.Instance.Fading.DOFade(1, 2);
-        StartCoroutine(WaitToChangCam());
-    }
-
-
-    IEnumerator WaitToChangCam()
-    {
-        yield return new WaitForSeconds(2);
-        MainGame.Instance.CamCinematic.SetActive(false);
-        MainGame.Instance.Fading.enabled = false;
-        MainGame.Instance.CamCinematic.SetActive(true);
-        gameObject.SetActive(false);
+        Pages[PageOn].SetActive(false);
+        PageOn--;
+        Pages[PageOn].SetActive(true);
+        Pages[PageOn].GetComponent<DiaryMission>().CheckImages();
     }
 }

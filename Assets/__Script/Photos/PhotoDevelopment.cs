@@ -9,12 +9,12 @@ public class PhotoDevelopment : MonoBehaviour
 {
     public Button Developpement;
     public GameObject QTEObject;
-    
+
     //public TMP_Text TimeText;
     //public TMP_Text TimeTextShadow;
-    
+
     //public int TimeToDev;
-    
+
     //float _timeToWithdraw = 0;
     //[SerializeField]float _malusTime;
     //[HideInInspector] public int ChangingTime = 0; 
@@ -65,14 +65,18 @@ public class PhotoDevelopment : MonoBehaviour
         //MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * PicSlected.Count + _malusTime * MainGame.Instance.m_QTE.NumberFailed);
         MainGame.Instance.DeveloppmentIsActive = false;
         MainGame.Instance.DeveloppmentObj.SetActive(MainGame.Instance.DeveloppmentIsActive);
-        foreach ( var i in PicSlected)
+        foreach (var i in PicSlected)
         {
-            foreach (var image in MainGame.Instance.m_Diary.PicturesDev)
-            {
-                if (image.sprite == null)
-                    image.sprite = i._image.sprite;
-                break;
-            }
+            //foreach (var image in MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>()PicturesDev)
+            //{
+            //    if (image.sprite == null)
+            //    {
+            //        image.sprite = i._image.sprite;
+            //        if(i.HasObjectiveIn)
+            //            image.GetComponent<DragDrop>().HasObjectiveIn = true;
+            //        break;
+            //    }
+            //}
             if (i.PicOutline.enabled == true)
                 i.PicOutline.enabled = false;
         }
