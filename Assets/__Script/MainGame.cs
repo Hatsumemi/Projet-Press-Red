@@ -53,6 +53,7 @@ public class MainGame : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+            Debug.Log("test");
             m_CameraManager.ChangeCam();
             TextPhoto.enabled = !MainGame.Instance.m_Photography.IsActive;
         }

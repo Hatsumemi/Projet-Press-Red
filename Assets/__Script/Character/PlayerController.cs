@@ -65,17 +65,24 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            if (IsCrouching)
-            { IsCrouching = false;
+            /*if (IsCrouching)
+            { 
+                IsCrouching = false;
                 playerAnim.SetBool("iscrouchwalk", false);
-            }
+            }*/
 
-            else
-            {
+            //else
+            //{
                 playerAnim.SetBool("iscrouchwalk", true);
                 IsCrouching = true;
                 _speed = CrouchSpeed;
-            }
+            //}
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            IsCrouching = false;
+            playerAnim.SetBool("iscrouchwalk", false);
         }
 
         if (!IsCrouching && Input.GetKey(KeyCode.LeftShift))
