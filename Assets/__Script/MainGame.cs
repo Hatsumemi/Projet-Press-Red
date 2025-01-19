@@ -18,6 +18,7 @@ public class MainGame : MonoBehaviour
     public Timer m_Timer;
     public QTE m_QTE;
     public Diary m_Diary;
+    public DiaryMission m_DiaryMission;
 
     [Header("Other Variables")]
     public TMP_Text TextPhoto;
@@ -53,7 +54,7 @@ public class MainGame : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("test");
+            //Debug.Log("test");
             m_CameraManager.ChangeCam();
             TextPhoto.enabled = !MainGame.Instance.m_Photography.IsActive;
         }

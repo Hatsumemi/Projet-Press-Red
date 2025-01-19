@@ -71,9 +71,9 @@ public class PhotoDevelopment : MonoBehaviour
             {
                 if (image.sprite == null)
                 {
-                    image.sprite = i._image.sprite;
+                    image.sprite = i.Image.sprite;
                     if (i.HasObjectiveIn)
-                        image.GetComponent<DragDrop>().HasObjectiveIn = true;
+                        image.GetComponent<Picture>().HasObjectiveIn = true;
                     break;
                 }
             }

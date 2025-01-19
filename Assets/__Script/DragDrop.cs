@@ -7,9 +7,6 @@ using UnityEngine.EventSystems;
 
 public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    
-    public bool HasObjectiveIn = false;
-
     private Vector3 originalPosition;
     private float _targetXMax; 
     private float _targetXMin; 
@@ -40,8 +37,10 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         if (_targetXMin < transform.position.x && transform.position.x < _targetXMax &&
             _targetYMin < transform.position.y && transform.position.y < _targetYMax)
         {
-            transform.position = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().Objective.transform.position;
-            MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().ValidatingButton.gameObject.SetActive(true);
+            //transform.position = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().Objective.transform.position;
+            MainGame.Instance.m_DiaryMission.Objective.sprite = gameObject.GetComponent<Image>().sprite;
+            if (gameObject.GetComponent<Picture>().HasObjectiveIn == true)
+                MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().ValidatingButton.gameObject.SetActive(true);
         }
 
         else

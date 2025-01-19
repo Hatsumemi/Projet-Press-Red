@@ -9,12 +9,13 @@ public class Picture : MonoBehaviour
 {
     public bool HasObjectiveIn = false;
     public Outline PicOutline;
-    [HideInInspector]public Image _image;
+    [FormerlySerializedAs("_image")] [HideInInspector]public Image Image;
 
     void Start()
     {
-        PicOutline.enabled = false;
-        _image = GetComponent<Image>();
+        if(PicOutline != null)
+            PicOutline.enabled = false;
+        Image = GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class Picture : MonoBehaviour
 
     public void OnClick()
     {
-        if (PicOutline.enabled==false && _image.sprite != null)
+        if (PicOutline.enabled==false && Image.sprite != null)
         {
             PicOutline.enabled = true;
             //MainGame.Instance.m_PhotoDevelopment.ChangingTime += MainGame.Instance.m_PhotoDevelopment.TimeToDev;
