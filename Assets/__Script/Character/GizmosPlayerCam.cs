@@ -64,7 +64,8 @@ public class GizmosPlayerCam : MonoBehaviour
 
             Vector3 rightDirection = _transformCamera.right;
             Vector3 newPosition = _head.position + rightDirection * _distance;
-            transform.position = newPosition;
+            transform.position = Vector3.Slerp(transform.position, newPosition, Time.deltaTime * 0.9f);
+            //transform.position = newPosition;
         }
         else
         {

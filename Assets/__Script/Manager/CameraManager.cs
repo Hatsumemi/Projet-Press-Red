@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 public class CameraManager : MonoBehaviour
 {
@@ -26,6 +28,8 @@ public class CameraManager : MonoBehaviour
     public float distanceFPP;
     public float sensivityFPP;
     public float FOVFPP;
+
+    private Vector3 adjustedPosition;
 
     void Awake()
     {
@@ -53,6 +57,8 @@ public class CameraManager : MonoBehaviour
 
             transform.LookAt(LookAt.position);
         }
+
+        CameraCollide();
     }
 
     public void ChangeCam()
@@ -83,5 +89,45 @@ public class CameraManager : MonoBehaviour
         DOVirtual.Float(Distance, distance, ChangingDuration, (f) => Distance = f);
         DOVirtual.Float(Sensivity, sensivity, ChangingDuration, (f) => Sensivity = f);
         DOVirtual.Float(FOV.fieldOfView, fov, ChangingDuration, (f) => FOV.fieldOfView = f);
+    }
+
+
+
+    private void CameraCollide()
+    {
+        if (MainGame.Instance.m_Photography.IsActive == false)
+        {
+            if (!LookAt)
+                return;
+
+            Vector3 desiredPosition = LookAt.position - transform.forward * Distance;
+            Vector3 direction = (desiredPosition - LookAt.position).normalized;
+            RaycastHit hit;
+
+            if (Physics.Raycast(LookAt.position, direction, out hit, Distance))
+            {
+                if (hit.transform.gameObject != LookAt.gameObject && hit.transform.gameObject != Player.gameObject)
+                {
+                    Debug.Log("CAMERA IN WALL");
+                    Distance = Mathf.Clamp(hit.distance, 0.5f, distanceTPP);
+                    adjustedPosition = LookAt.position - direction * Distance;
+                }
+            }
+            else
+            {
+                Distance = Mathf.Lerp(Distance, distanceTPP, Time.deltaTime * 5f);
+                adjustedPosition = desiredPosition;
+            }
+            transform.position = Vector3.Lerp(transform.position, adjustedPosition, Time.deltaTime * 10f);
+
+            transform.LookAt(LookAt.position);
+        }
+    }
+
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(LookAt.position, LookAt.position + (transform.position - LookAt.position).normalized * Distance);
     }
 }

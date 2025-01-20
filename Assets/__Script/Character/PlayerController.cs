@@ -141,7 +141,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            transform.rotation = Camera.gameObject.transform.rotation;
+            Vector3 currentRotation = transform.rotation.eulerAngles;
+            float newYRotation = Camera.gameObject.transform.rotation.eulerAngles.y;
+            transform.rotation = Quaternion.Euler(currentRotation.x, newYRotation, currentRotation.z);
         }
     }
 }

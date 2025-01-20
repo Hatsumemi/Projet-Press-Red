@@ -2096,6 +2096,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
+      propertyPath: _distance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
       propertyPath: GizmosYCrouch
       value: 0
       objectReference: {fileID: 0}
@@ -2632,6 +2636,10 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 855665136}
+    - target: {fileID: 8896103193508383215, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
+      propertyPath: distanceTPP
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
