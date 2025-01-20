@@ -15,14 +15,10 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     private void Awake()
     {
-        _targetXMax = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>()
-            .Objective.transform.position.x + 192;
-        _targetXMin = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>()
-            .Objective.transform.position.x - 192;
-        _targetYMax = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>()
-            .Objective.transform.position.y + 108;
-        _targetYMin = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>()
-            .Objective.transform.position.y - 108;
+        _targetXMax = MainGame.Instance.m_Diary.Objective.transform.position.x + 192;
+        _targetXMin = MainGame.Instance.m_Diary.Objective.transform.position.x - 192;
+        _targetYMax = MainGame.Instance.m_Diary.Objective.transform.position.y + 108;
+        _targetYMin = MainGame.Instance.m_Diary.Objective.transform.position.y - 108;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -41,15 +37,26 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         if (_targetXMin < transform.position.x && transform.position.x < _targetXMax &&
             _targetYMin < transform.position.y && transform.position.y < _targetYMax)
         {
-            //transform.position = MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().Objective.transform.position;
-            MainGame.Instance.m_DiaryMission.Objective.sprite = gameObject.GetComponent<Image>().sprite;
+            MainGame.Instance.m_Diary.Objective.sprite = gameObject.GetComponent<Image>().sprite;
+            gameObject.GetComponent<Image>().sprite = null;
             if (gameObject.GetComponent<Picture>().HasObjectiveIn == true)
             {
-                MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>()
-                    .ValidatingButton.gameObject.SetActive(true);
+                MainGame.Instance.m_Diary.ValidatingButton.gameObject.SetActive(true);
             }
 
-            foreach (var image in MainGame.Instance.m_DiaryMission.PicturesDev)
+            for (int i = 0; i < MainGame.Instance.m_DiaryMissions.Count; i++)
+            {
+                foreach (var image in MainGame.Instance.m_DiaryMissions[i].PicturesDev)
+                {
+                    if (image.sprite == null)
+                    {
+                        image.sprite = MainGame.Instance.m_Diary.Objective.sprite;
+                        break;
+                    }
+                }
+            }
+
+            foreach (var image in MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().PicturesDev)
             {
                 if (image.sprite != null)
                     image.gameObject.SetActive(true);

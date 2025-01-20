@@ -18,7 +18,7 @@ public class MainGame : MonoBehaviour
     public Timer m_Timer;
     public QTE m_QTE;
     public Diary m_Diary;
-    public DiaryMission m_DiaryMission;
+    public List<DiaryMission> m_DiaryMissions;
 
     [Header("Other Variables")]
     public TMP_Text TextPhoto;

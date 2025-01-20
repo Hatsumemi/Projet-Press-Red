@@ -253,17 +253,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6747591691133642790, guid: 36848f65e678eb14a902210525e08da0, type: 3}
   m_PrefabInstance: {fileID: 1747931852880052820}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &138995700 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4299443490030023493, guid: 36848f65e678eb14a902210525e08da0, type: 3}
-  m_PrefabInstance: {fileID: 1747931852880052820}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &173721649 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6959708807578892940, guid: 36848f65e678eb14a902210525e08da0, type: 3}
@@ -417,17 +406,6 @@ GameObject:
 --- !u!114 &240628422 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3488394898734011432, guid: 36848f65e678eb14a902210525e08da0, type: 3}
-  m_PrefabInstance: {fileID: 1747931852880052820}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &268129293 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9122011143772257962, guid: 36848f65e678eb14a902210525e08da0, type: 3}
   m_PrefabInstance: {fileID: 1747931852880052820}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -649,7 +627,10 @@ MonoBehaviour:
   m_Timer: {fileID: 579379342}
   m_QTE: {fileID: 109280819}
   m_Diary: {fileID: 911111310}
-  m_DiaryMission: {fileID: 1305553405}
+  m_DiaryMissions:
+  - {fileID: 1305553405}
+  - {fileID: 2141375755}
+  - {fileID: 1653955332}
   TextPhoto: {fileID: 178332383}
   TextDev: {fileID: 2142366649}
   MainCam: {fileID: 203777478}
@@ -810,17 +791,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &639606157 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4776672545248775983, guid: 36848f65e678eb14a902210525e08da0, type: 3}
-  m_PrefabInstance: {fileID: 1747931852880052820}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &640816114 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2925395354981221511, guid: 36848f65e678eb14a902210525e08da0, type: 3}
@@ -1603,8 +1573,6 @@ MonoBehaviour:
   - {fileID: 985273313}
   - {fileID: 999708169}
   - {fileID: 1387598819}
-  ValidatingButton: {fileID: 462671971}
-  Objective: {fileID: 639606157}
 --- !u!1 &1312511976 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5428063903095710727, guid: 36848f65e678eb14a902210525e08da0, type: 3}
@@ -2282,8 +2250,6 @@ MonoBehaviour:
   - {fileID: 1413857118}
   - {fileID: 461225140}
   - {fileID: 1380471443}
-  ValidatingButton: {fileID: 138995700}
-  Objective: {fileID: 268129293}
 --- !u!114 &1701056470 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2698504840217290391, guid: 36848f65e678eb14a902210525e08da0, type: 3}
@@ -2819,8 +2785,6 @@ MonoBehaviour:
   - {fileID: 1121399089}
   - {fileID: 769721659}
   - {fileID: 1701056470}
-  ValidatingButton: {fileID: 462671971}
-  Objective: {fileID: 639606157}
 --- !u!1 &2142366647
 GameObject:
   m_ObjectHideFlags: 0
@@ -3059,6 +3023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1823636380023025474, guid: 36848f65e678eb14a902210525e08da0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1945678453457003299, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3163,6 +3131,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8155739872165198614, guid: 36848f65e678eb14a902210525e08da0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203513646515874033, guid: 36848f65e678eb14a902210525e08da0, type: 3}
+      propertyPath: ValidatingButton
+      value: 
+      objectReference: {fileID: 462671971}
     - target: {fileID: 9203513646515874033, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: Pages.Array.data[1]
       value: 
