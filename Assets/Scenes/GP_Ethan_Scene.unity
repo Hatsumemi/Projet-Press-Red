@@ -503,6 +503,7 @@ MonoBehaviour:
   m_Timer: {fileID: 579379342}
   m_QTE: {fileID: 109280819}
   m_Diary: {fileID: 911111310}
+  m_DiaryMission: {fileID: 0}
   TextPhoto: {fileID: 0}
   TextDev: {fileID: 0}
   MainCam: {fileID: 203777478}
@@ -2090,6 +2091,14 @@ PrefabInstance:
       propertyPath: _head
       value: 
       objectReference: {fileID: 826944923}
+    - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
+      propertyPath: GizmosY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
+      propertyPath: GizmosYCrouch
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
       propertyPath: _transformCamera
       value: 
