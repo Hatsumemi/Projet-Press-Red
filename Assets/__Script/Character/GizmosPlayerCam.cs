@@ -7,14 +7,15 @@ using UnityEngine.TextCore.Text;
 
 public class GizmosPlayerCam : MonoBehaviour
 {
-    public float GizmosX;
+    /*public float GizmosX;
     public float GizmosY;
     public float GizmosZ;
-    public float GizmosYCrouch;
+    public float GizmosYCrouch;*/
 
     [SerializeField] private Transform _head;
     [SerializeField] private Transform _transformCamera;
     [SerializeField] private float _distance;
+    [SerializeField] private float _cameraDelaySpeed;
 
     void Update()
     {
@@ -64,7 +65,7 @@ public class GizmosPlayerCam : MonoBehaviour
 
             Vector3 rightDirection = _transformCamera.right;
             Vector3 newPosition = _head.position + rightDirection * _distance;
-            transform.position = Vector3.Slerp(transform.position, newPosition, Time.deltaTime * 0.9f);
+            transform.position = Vector3.Slerp(transform.position, newPosition, Time.deltaTime * _cameraDelaySpeed);
             //transform.position = newPosition;
         }
         else

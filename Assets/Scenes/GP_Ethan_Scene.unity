@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Timer: {fileID: 579379342}
   m_QTE: {fileID: 109280819}
   m_Diary: {fileID: 911111310}
-  m_DiaryMission: {fileID: 0}
+  m_DiaryMissions: []
   TextPhoto: {fileID: 0}
   TextDev: {fileID: 0}
   MainCam: {fileID: 203777478}
@@ -2097,7 +2097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
       propertyPath: _distance
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
       propertyPath: GizmosYCrouch
@@ -2107,6 +2107,10 @@ PrefabInstance:
       propertyPath: _transformCamera
       value: 
       objectReference: {fileID: 1183701349}
+    - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
+      propertyPath: _cameraDelaySpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4086687116704794359, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.98
@@ -2270,7 +2274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4526746452150936, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6747591691133642790, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_Pivot.x

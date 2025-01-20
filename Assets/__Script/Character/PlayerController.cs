@@ -87,13 +87,15 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("iscrouchwalk", false);
         }
 
-        if (!IsCrouching && Input.GetKey(KeyCode.LeftShift))
+        if (!IsCrouching && Input.GetKey(KeyCode.LeftShift) && (_horizontalAxis != 0 || _verticalAxis != 0))
         {
             playerAnim.SetBool("isrunning", true);
             _speed = RunSpeed;
         }
         else
+        {
             playerAnim.SetBool("isrunning", false);
+        }
 
         //reading the input:
         _horizontalAxis = Input.GetAxis("Horizontal");
