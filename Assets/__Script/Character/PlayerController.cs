@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 //using static UnityEditor.SceneView;
 
 public class PlayerController : MonoBehaviour
@@ -109,12 +111,13 @@ public class PlayerController : MonoBehaviour
         right.y = 0f;
         forward.Normalize();
         right.Normalize();
-        
+
+
         var desiredMoveDirection = forward * _verticalAxis + right * _horizontalAxis;
 
         if (desiredMoveDirection != Vector3.zero)
             playerAnim.SetBool("iswalking", true);
-        else 
+        else
             playerAnim.SetBool("iswalking", false);
         if (desiredMoveDirection == Vector3.zero && IsCrouching)
             playerAnim.SetBool("iscrouch", true);
@@ -122,16 +125,23 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("iscrouch", false);
 
         transform.Translate(desiredMoveDirection * Time.deltaTime * _speed, Space.World);
-        RotatePlayerToCamera(desiredMoveDirection);
+        RotatePlayerToCamera(desiredMoveDirection);        
     }
     
     void RotatePlayerToCamera(Vector3 moveDirection)
     {
-        if (moveDirection != Vector3.zero)
+        if (MainGame.Instance.m_Photography.IsActive == false)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-        
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            if (moveDirection != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            }
+        }
+        else
+        {
+            transform.rotation = Camera.gameObject.transform.rotation;
         }
     }
 }
