@@ -15,13 +15,6 @@ public class Diary : MonoBehaviour
 
     public int PageOn = 0;
 
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))

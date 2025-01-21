@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,27 +10,22 @@ public class PhotoDevelopment : MonoBehaviour
 {
     public Button Developpement;
     public GameObject QTEObject;
-
-    //public TMP_Text TimeText;
-    //public TMP_Text TimeTextShadow;
-
-    //public int TimeToDev;
-
-    //float _timeToWithdraw = 0;
-    //[SerializeField]float _malusTime;
-    //[HideInInspector] public int ChangingTime = 0; 
+    public List<Image> Images;
     public List<Picture> PicSlected;
 
 
-    /*void Start()
+    private void Start()
     {
-        float minutes = Mathf.FloorToInt(_timeToWithdraw / 60);
-        float seconds = Mathf.FloorToInt(_timeToWithdraw % 60);
-
-        string text = string.Format("{0:00} : {1:00}", minutes, seconds);
-        TimeText.text = text;
-        TimeTextShadow.text = text;
-    }*/
+        foreach (Image image in Images)
+        {
+            if(image.sprite == null)
+                image.gameObject.SetActive(false);
+            else
+            {
+                image.gameObject.SetActive(true);
+            }
+        }
+    }
 
     void Update()
     {
@@ -42,17 +38,6 @@ public class PhotoDevelopment : MonoBehaviour
         {
             Developpement.gameObject.SetActive(false);
         }
-
-        // if (_timeToWithdraw < ChangingTime)
-        // {
-        //     _timeToWithdraw += Time.deltaTime ;
-        //     ChangeTimeToDev();
-        // }
-        // else if (_timeToWithdraw > ChangingTime)
-        // {
-        //     _timeToWithdraw -= Time.deltaTime ;
-        //     ChangeTimeToDev();
-        // }
     }
 
     public void QTE()
@@ -62,7 +47,6 @@ public class PhotoDevelopment : MonoBehaviour
 
     public void DevPhotos()
     {
-        //MainGame.Instance.m_Timer.TimeLeft -= (_timeToWithdraw * PicSlected.Count + _malusTime * MainGame.Instance.m_QTE.NumberFailed);
         MainGame.Instance.DeveloppmentIsActive = false;
         MainGame.Instance.DeveloppmentObj.SetActive(MainGame.Instance.DeveloppmentIsActive);
         foreach (var i in PicSlected)
@@ -74,6 +58,7 @@ public class PhotoDevelopment : MonoBehaviour
                     image.sprite = i.Image.sprite;
                     if (i.HasObjectiveIn)
                         image.GetComponent<Picture>().HasObjectiveIn = true;
+                    i.Image.sprite = null;
                     break;
                 }
             }
@@ -84,15 +69,5 @@ public class PhotoDevelopment : MonoBehaviour
         MainGame.Instance.m_PlayerController.CanMove = true;
         QTEObject.SetActive(false);
     }
-
-
-    /*public void ChangeTimeToDev()
-    {
-        float minutes = ChangingTime / 60;
-        float seconds = ChangingTime % 60;
-
-        string text = string.Format("{0:00} : {1:00}", minutes, seconds);
-        TimeText.text = text;
-        TimeTextShadow.text = text;
-    }*/
+    
 }
