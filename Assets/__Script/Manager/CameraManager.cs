@@ -4,6 +4,8 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Rendering;
 using Unity.VisualScripting;
+using System.Threading;
+using UnityEngine.UIElements;
 
 public class CameraManager : MonoBehaviour
 {
@@ -29,7 +31,9 @@ public class CameraManager : MonoBehaviour
     public float sensivityFPP;
     public float FOVFPP;
 
-    private Vector3 adjustedPosition;
+    private Vector3 _adjustedPosition;
+
+    private Ray ray2;
 
     void Awake()
     {
@@ -104,23 +108,47 @@ public class CameraManager : MonoBehaviour
             Vector3 direction = (desiredPosition - LookAt.position).normalized;
             RaycastHit hit;
 
+            RaycastHit hit2;
+            RaycastHit hit3;
+
             if (Physics.Raycast(LookAt.position, direction, out hit, Distance))
             {
                 if (hit.transform.gameObject != LookAt.gameObject && hit.transform.gameObject != Player.gameObject)
                 {
                     Debug.Log("CAMERA IN WALL");
                     Distance = Mathf.Clamp(hit.distance, 0.5f, distanceTPP);
-                    adjustedPosition = LookAt.position - direction * Distance;
+                    _adjustedPosition = LookAt.position - direction * Distance;
+                }
+            }
+            else if (Physics.Raycast(transform.position, transform.right, out hit2, 1))
+            {
+                if (hit2.transform.gameObject != LookAt.gameObject && hit2.transform.gameObject != Player.gameObject)
+                {
+                    Debug.Log("CAMERA IN WALL");
+                    Distance = Mathf.Clamp(hit.distance, 0.5f, distanceTPP);
+                    _adjustedPosition = LookAt.position - direction * Distance;
+                }
+            }
+            else if (Physics.Raycast(transform.position, -transform.right, out hit3, 1))
+            {
+                if (hit3.transform.gameObject != LookAt.gameObject && hit3.transform.gameObject != Player.gameObject)
+                {
+                    Debug.Log("CAMERA IN WALL");
+                    Distance = Mathf.Clamp(hit.distance, 0.5f, distanceTPP);
+                    _adjustedPosition = LookAt.position - direction * Distance;
                 }
             }
             else
             {
                 Distance = Mathf.Lerp(Distance, distanceTPP, Time.deltaTime * 5f);
-                adjustedPosition = desiredPosition;
+                _adjustedPosition = desiredPosition;
             }
-            transform.position = Vector3.Lerp(transform.position, adjustedPosition, Time.deltaTime * 10f);
+            transform.position = Vector3.Lerp(transform.position, _adjustedPosition, Time.deltaTime * 10f);
 
             transform.LookAt(LookAt.position);
+
+            //RaycastHit hit2;
+            //RaycastHit hit3;
         }
     }
 
@@ -129,5 +157,8 @@ public class CameraManager : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(LookAt.position, LookAt.position + (transform.position - LookAt.position).normalized * Distance);
+
+        Gizmos.DrawLine(transform.position, transform.position + transform.right * 3);
+        Gizmos.DrawLine(transform.position, transform.position + - transform.right * 3);
     }
 }

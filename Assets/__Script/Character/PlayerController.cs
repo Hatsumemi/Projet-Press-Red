@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     Animator playerAnim;
 
+    [SerializeField] private GameObject _canvasPhotoLens;
+
     private void Awake()
     {
         playerAnim = GetComponent<Animator>();
@@ -139,6 +141,11 @@ public class PlayerController : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
 
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+
+                if (_canvasPhotoLens != null && _canvasPhotoLens.active == true)
+                {
+                    _canvasPhotoLens.SetActive(false);
+                }
             }
         }
         else
@@ -146,6 +153,11 @@ public class PlayerController : MonoBehaviour
             Vector3 currentRotation = transform.rotation.eulerAngles;
             float newYRotation = Camera.gameObject.transform.rotation.eulerAngles.y;
             transform.rotation = Quaternion.Euler(currentRotation.x, newYRotation, currentRotation.z);
+
+            if (_canvasPhotoLens != null && _canvasPhotoLens.active == false)
+            {
+                _canvasPhotoLens.SetActive(true);
+            }
         }
     }
 }
