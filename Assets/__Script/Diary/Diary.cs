@@ -14,6 +14,7 @@ public class Diary : MonoBehaviour
     [SerializeField] GameObject NextArrow;
 
     public int PageOn = 0;
+    public int TypeOfPhoto = 0;
 
     void Update()
     {
@@ -54,6 +55,7 @@ public class Diary : MonoBehaviour
 
     public void OkCheck()
     {
+
         MainGame.Instance.Fading.enabled = true;
         MainGame.Instance.Fading.DOFade(1, 2);
         StartCoroutine(WaitToChangCam());

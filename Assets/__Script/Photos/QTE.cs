@@ -46,7 +46,7 @@ public class QTE : MonoBehaviour
         else
         {
             _qteCount = 0;
-            //NumberFailed = 0;
+            
             MainGame.Instance.m_PhotoDevelopment.DevPhotos();
         }
     }

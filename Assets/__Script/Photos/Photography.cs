@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
-using UnityEngine.Rendering;
-using System.IO;
 
 public class Photography : MonoBehaviour
 {
@@ -12,17 +10,16 @@ public class Photography : MonoBehaviour
     [Header("Values")]
     public Camera Camera;
     [HideInInspector] public bool IsActive = false;
-    [HideInInspector] public bool Triggered = false;
     private int _photoCount;
     private bool _takePhoto = false;
 
 
     [Header("Photographies")]
-    public GameObject Objetive;
+    public List<GameObject> Objetives;
     public Image Flash;
     [SerializeField] private List<Image> _photos;
     private Texture2D _photoTakenTexture;
-    private bool _objectiveIsOn = false;
+    [SerializeField] private List<bool> _objectivesAreOn = new List<bool> { false, false, false };
 
     void Start()
     {
@@ -34,15 +31,13 @@ public class Photography : MonoBehaviour
     {
         if (IsActive && Input.GetMouseButtonDown(0))
         {
-            if (Triggered && _takePhoto == false)
+            if (_takePhoto == false)
             {
                 if (_photoCount < _photos.Count)
                     StartCoroutine(Photo());
                 else
                     Debug.Log("You can't take anymore photos.");
             }
-            else
-                Debug.Log("There is nothing important to take here.");
         }
     }
 
@@ -58,10 +53,22 @@ public class Photography : MonoBehaviour
     IEnumerator Photo()
     {
         yield return new WaitForEndOfFrame();
-        if (Objetive.GetComponent<Renderer>().isVisible)
-             _objectiveIsOn = true;
+        foreach (var item in Objetives)
+        {
+            if (item.GetComponent<Renderer>().isVisible)
+            {
+                for (int i = 0; i < _objectivesAreOn.Count; i++)
+                {
+                    if (_objectivesAreOn[i] == false)
+                    {
+                        _objectivesAreOn[i] = true;
+                        break;
+                    }
+                }
+            }
+        }
 
-    Rect regionToCapture = new Rect(0, 0, Screen.width, Screen.height);
+        Rect regionToCapture = new Rect(0, 0, Screen.width, Screen.height);
 
         _photoTakenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
 
@@ -84,12 +91,14 @@ public class Photography : MonoBehaviour
             if (image.sprite == null)
             {
                 image.sprite = PhotoSprite;
-                if (_objectiveIsOn)
-                    image.GetComponent<Picture>().HasObjectiveIn = true;
+                //foreach (bool item in _objectivesAreOn)
+                //{
+                //    if (item == true)
+                //        image.GetComponent<Picture>().HasObjectivesIn;
+                //}
                 break;
             }
         }
-        _objectiveIsOn = false;
 
         StartCoroutine(WaitToPhotograph());
     }

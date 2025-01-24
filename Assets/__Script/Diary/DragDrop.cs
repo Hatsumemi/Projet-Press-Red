@@ -39,8 +39,12 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         {
             MainGame.Instance.m_Diary.Objective.sprite = gameObject.GetComponent<Image>().sprite;
             gameObject.GetComponent<Image>().sprite = null;
-            if (gameObject.GetComponent<Picture>().HasObjectiveIn == true)
+            foreach (bool item in gameObject.GetComponent<Picture>().HasObjectivesIn)
             {
+                if (item)
+                {
+                    MainGame.Instance.m_Diary.TypeOfPhoto++;
+                }
                 MainGame.Instance.m_Diary.ValidatingButton.gameObject.SetActive(true);
             }
 

@@ -56,8 +56,16 @@ public class PhotoDevelopment : MonoBehaviour
                 if (image.sprite == null)
                 {
                     image.sprite = i.Image.sprite;
-                    if (i.HasObjectiveIn)
-                        image.GetComponent<Picture>().HasObjectiveIn = true;
+                    foreach(bool item in i.gameObject.GetComponent<Picture>().HasObjectivesIn)
+                    {
+                        if (item)
+                        {
+                            for (int boolean = 0; boolean < image.GetComponent<Picture>().HasObjectivesIn.Count; boolean++)
+                                image.GetComponent<Picture>().HasObjectivesIn[boolean] = true;
+                        }
+
+                    }
+                    
                     i.Image.sprite = null;
                     break;
                 }

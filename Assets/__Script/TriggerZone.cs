@@ -9,7 +9,6 @@ public class TriggerZone : MonoBehaviour
     public GameObject Player;
     public enum Types
     {
-        Photography,
         Development,
     }
 
@@ -23,13 +22,6 @@ public class TriggerZone : MonoBehaviour
     {
         if (other != null && other.gameObject == Player)
         {
-            if (Type == Types.Photography)
-            {
-                Debug.Log("Hiiii");
-                MainGame.Instance.m_Photography.Triggered = true;
-                MainGame.Instance.TextPhoto.gameObject.SetActive(true);
-            }
-
             if (Type == Types.Development)
             {
                 Debug.Log("Hellow");
@@ -40,9 +32,7 @@ public class TriggerZone : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        MainGame.Instance.m_Photography.Triggered = false;
         MainGame.Instance.Triggered = false;
-        MainGame.Instance.TextPhoto.gameObject.SetActive(false);
         MainGame.Instance.TextDev.gameObject.SetActive(false);
     }
 }

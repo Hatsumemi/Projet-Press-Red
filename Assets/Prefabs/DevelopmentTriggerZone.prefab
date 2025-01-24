@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6174442837653587608}
   - component: {fileID: 2762587604824868791}
   m_Layer: 0
-  m_Name: PhotographyTriggerZone
+  m_Name: DevelopmentTriggerZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

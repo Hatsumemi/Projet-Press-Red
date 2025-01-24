@@ -32,6 +32,12 @@ public class MainGame : MonoBehaviour
     public GameObject DeveloppmentObj;    
     [HideInInspector]public bool DiaryIsActive = false;
     public GameObject Diary;
+    private enum Types
+    {
+        informatives,
+        émotive,
+        sensationnelles
+    }
 
     private void Awake()
     {
