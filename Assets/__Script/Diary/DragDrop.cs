@@ -13,7 +13,7 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     private float _targetYMax;
     private float _targetYMin;
 
-    private void Awake()
+    private void Start()
     {
         _targetXMax = MainGame.Instance.m_Diary.Objective.transform.position.x + 192;
         _targetXMin = MainGame.Instance.m_Diary.Objective.transform.position.x - 192;
@@ -44,8 +44,8 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
                 if (item)
                 {
                     MainGame.Instance.m_Diary.TypeOfPhoto++;
+                    MainGame.Instance.m_Diary.ValidatingButton.gameObject.SetActive(true);
                 }
-                MainGame.Instance.m_Diary.ValidatingButton.gameObject.SetActive(true);
             }
 
             for (int i = 0; i < MainGame.Instance.m_DiaryMissions.Count; i++)
@@ -60,7 +60,8 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
                 }
             }
 
-            foreach (var image in MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().PicturesDev)
+            foreach (var image in MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn]
+                         .GetComponent<DiaryMission>().PicturesDev)
             {
                 if (image.sprite != null)
                     image.gameObject.SetActive(true);

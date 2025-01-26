@@ -35,7 +35,7 @@ public class MainGame : MonoBehaviour
     private enum Types
     {
         informatives,
-        émotive,
+        emotive,
         sensationnelles
     }
 
@@ -52,12 +52,22 @@ public class MainGame : MonoBehaviour
 
     void Start()
     {
-        
+        DeveloppmentObj.gameObject.SetActive(false);
+        Diary.gameObject.SetActive(false);
+        foreach (var item in m_DiaryMissions)
+        {
+            item.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            OkCheck();
+        }
+        
         if (Input.GetMouseButtonDown(1))
         {
             //Debug.Log("test");
@@ -84,7 +94,24 @@ public class MainGame : MonoBehaviour
         }
     }
 
+    public void OkCheck()
+    {
 
+        MainGame.Instance.Fading.enabled = true;
+        MainGame.Instance.Fading.DOFade(1, 2);
+        StartCoroutine(WaitToChangCam());
+    }
+
+
+    IEnumerator WaitToChangCam()
+    {
+        yield return new WaitForSeconds(2);
+        CamCinematic.SetActive(false);
+        Fading.enabled = false;
+        CamCinematic.SetActive(true);
+        m_Diary.ValidatingButton.gameObject.SetActive(false); 
+    }
+    
     IEnumerator WaitToDisappear()
     {
         yield return new WaitForSeconds(1);

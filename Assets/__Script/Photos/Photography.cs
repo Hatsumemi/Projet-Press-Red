@@ -48,6 +48,14 @@ public class Photography : MonoBehaviour
         _photoCount++;
         _takePhoto = false;
         Flash.DOFade(0, 0.2f);
+        for (int i = 0; i < _objectivesAreOn.Count; i++)
+        {
+            if (_objectivesAreOn[i] == true)
+            {
+                _objectivesAreOn[i] = false;
+                break;
+            }
+        }
     }
 
     IEnumerator Photo()
@@ -90,12 +98,14 @@ public class Photography : MonoBehaviour
         {
             if (image.sprite == null)
             {
+                int i = 0;
                 image.sprite = PhotoSprite;
-                //foreach (bool item in _objectivesAreOn)
-                //{
-                //    if (item == true)
-                //        image.GetComponent<Picture>().HasObjectivesIn;
-                //}
+                foreach (bool item in _objectivesAreOn)
+                {
+                    if (item == true)
+                        image.GetComponent<Picture>().HasObjectivesIn[i] = true;
+                    i++;
+                }
                 break;
             }
         }
