@@ -34,6 +34,7 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        MainGame.Instance.m_Diary.TypeOfPhoto = 0;
         if (_targetXMin < transform.position.x && transform.position.x < _targetXMax &&
             _targetYMin < transform.position.y && transform.position.y < _targetYMax)
         {
@@ -41,7 +42,7 @@ public class DragDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             gameObject.GetComponent<Image>().sprite = null;
             foreach (bool item in gameObject.GetComponent<Picture>().HasObjectivesIn)
             {
-                if (item)
+                if (item == true)
                 {
                     MainGame.Instance.m_Diary.TypeOfPhoto++;
                     MainGame.Instance.m_Diary.ValidatingButton.gameObject.SetActive(true);

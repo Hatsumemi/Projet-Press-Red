@@ -49,29 +49,30 @@ public class PhotoDevelopment : MonoBehaviour
     {
         MainGame.Instance.DeveloppmentIsActive = false;
         MainGame.Instance.DeveloppmentObj.SetActive(MainGame.Instance.DeveloppmentIsActive);
-        foreach (var i in PicSlected)
+        foreach (var imageToDev in PicSlected)
         {
+            int i = 0;
             foreach (var image in MainGame.Instance.m_Diary.Pages[MainGame.Instance.m_Diary.PageOn].GetComponent<DiaryMission>().PicturesDev)
             {
                 if (image.sprite == null)
                 {
-                    image.sprite = i.Image.sprite;
-                    foreach(bool item in i.gameObject.GetComponent<Picture>().HasObjectivesIn)
+                    image.sprite = imageToDev.Image.sprite;
+                    foreach(bool item in imageToDev.gameObject.GetComponent<Picture>().HasObjectivesIn)
                     {
                         if (item)
                         {
-                            for (int boolean = 0; boolean < image.GetComponent<Picture>().HasObjectivesIn.Count; boolean++)
-                                image.GetComponent<Picture>().HasObjectivesIn[boolean] = true;
+                                image.GetComponent<Picture>().HasObjectivesIn[i] = true;
+                                i++;
                         }
 
                     }
                     
-                    i.Image.sprite = null;
+                    imageToDev.Image.sprite = null;
                     break;
                 }
             }
-            if (i.PicOutline.enabled == true)
-                i.PicOutline.enabled = false;
+            if (imageToDev.PicOutline.enabled == true)
+                imageToDev.PicOutline.enabled = false;
         }
         PicSlected.Clear();
         MainGame.Instance.m_PlayerController.CanMove = true;
