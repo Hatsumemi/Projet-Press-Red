@@ -35,6 +35,12 @@ public class CameraManager : MonoBehaviour
 
     private Ray ray2;
 
+
+    float differenceX;
+    float differenceY;
+
+    bool _camInWall = false;
+
     void Awake()
     {
         FOV = GetComponent<Camera>();
@@ -50,16 +56,30 @@ public class CameraManager : MonoBehaviour
     {
         if (MainGame.Instance.m_PlayerController.CanMove)
         {
+            float previousX = currentX;
+            float previousY = currentY;
+
             currentX += Input.GetAxis("Mouse X") * Sensivity * Time.deltaTime;
             currentY += -Input.GetAxis("Mouse Y") * Sensivity * Time.deltaTime;
 
             currentY = Mathf.Clamp(currentY, YMin, YMax);
 
-            Vector3 Direction = new Vector3(0, 0, -Distance);
-            Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-            transform.position = LookAt.position + rotation * Direction;
+            differenceX = currentX - previousX;
+            differenceY = currentY - previousY;
 
-            transform.LookAt(LookAt.position);
+
+            //if ((differenceX > 0 || differenceX < 0 || differenceY > 0 || differenceY < 0))
+            //{
+            //if (_camInWall == false)
+            //{
+                Debug.Log("Camera mooving");
+                Vector3 Direction = new Vector3(0, 0, -Distance);
+                Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
+                transform.position = LookAt.position + rotation * Direction;
+
+                transform.LookAt(LookAt.position);
+            //}
+            //}
         }
 
         CameraCollide();
@@ -99,7 +119,7 @@ public class CameraManager : MonoBehaviour
 
     private void CameraCollide()
     {
-        if (MainGame.Instance.m_Photography.IsActive == false)
+        if (MainGame.Instance.m_Photography.IsActive == false) //(differenceX != 0 || differenceY != 0))
         {
             if (!LookAt)
                 return;
@@ -113,42 +133,69 @@ public class CameraManager : MonoBehaviour
 
             if (Physics.Raycast(LookAt.position, direction, out hit, Distance))
             {
-                if (hit.transform.gameObject != LookAt.gameObject && hit.transform.gameObject != Player.gameObject)
+                if (hit.transform.gameObject != LookAt.gameObject && hit.transform.gameObject != Player.gameObject && _camInWall) //== false)
                 {
+                    _camInWall = true;
                     Debug.Log("CAMERA IN WALL");
                     Distance = Mathf.Clamp(hit.distance, 0.5f, distanceTPP);
                     _adjustedPosition = LookAt.position - direction * Distance;
+
+                    Transform headTransform = LookAt.gameObject.GetComponent<GizmosPlayerCam>().head;
+                    LookAt.gameObject.transform.position = new Vector3(headTransform.position.x, headTransform.position.y, headTransform.position.z);
+
                 }
             }
             else if (Physics.Raycast(transform.position, transform.right, out hit2, 1))
             {
-                if (hit2.transform.gameObject != LookAt.gameObject && hit2.transform.gameObject != Player.gameObject)
+                if (hit2.transform.gameObject != LookAt.gameObject && hit2.transform.gameObject != Player.gameObject) //&& _camInWall == false)
                 {
                     Debug.Log("CAMERA IN WALL");
+
+                    _camInWall = true;
                     Distance = Mathf.Clamp(hit.distance, 0.5f, distanceTPP);
                     _adjustedPosition = LookAt.position - direction * Distance;
+
+                    Transform headTransform = LookAt.gameObject.GetComponent<GizmosPlayerCam>().head;
+                    LookAt.gameObject.transform.position = new Vector3(headTransform.position.x, headTransform.position.y, headTransform.position.z);
                 }
             }
             else if (Physics.Raycast(transform.position, -transform.right, out hit3, 1))
             {
-                if (hit3.transform.gameObject != LookAt.gameObject && hit3.transform.gameObject != Player.gameObject)
+                if (hit3.transform.gameObject != LookAt.gameObject && hit3.transform.gameObject != Player.gameObject) //&& _camInWall == false)
                 {
+                    _camInWall = true;
                     Debug.Log("CAMERA IN WALL");
                     Distance = Mathf.Clamp(hit.distance, 0.5f, distanceTPP);
                     _adjustedPosition = LookAt.position - direction * Distance;
+
+                    Transform headTransform = LookAt.gameObject.GetComponent<GizmosPlayerCam>().head;
+                    LookAt.gameObject.transform.position = new Vector3(headTransform.position.x, headTransform.position.y, headTransform.position.z);
                 }
             }
             else
             {
+                Debug.Log("CAMERA OUT WALL");
+                _camInWall = false;
                 Distance = Mathf.Lerp(Distance, distanceTPP, Time.deltaTime * 5f);
                 _adjustedPosition = desiredPosition;
             }
-            transform.position = Vector3.Lerp(transform.position, _adjustedPosition, Time.deltaTime * 10f);
+
+
+            Vector3 newPos = Vector3.Lerp(transform.position, _adjustedPosition, Time.deltaTime * 10f);
+            
+            float distanceActualPosAndNewPos = Vector3.Distance(newPos, transform.position); // a poursuivre ou a retirer
+
+            if (distanceActualPosAndNewPos > 10)
+            {
+                transform.position = newPos;
+            }
 
             transform.LookAt(LookAt.position);
 
             //RaycastHit hit2;
             //RaycastHit hit3;
+
+
         }
     }
 
@@ -158,7 +205,7 @@ public class CameraManager : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(LookAt.position, LookAt.position + (transform.position - LookAt.position).normalized * Distance);
 
-        Gizmos.DrawLine(transform.position, transform.position + transform.right * 3);
-        Gizmos.DrawLine(transform.position, transform.position + - transform.right * 3);
+        Gizmos.DrawLine(transform.position, transform.position + transform.right * 1);
+        Gizmos.DrawLine(transform.position, transform.position + - transform.right * 1);
     }
 }

@@ -14,9 +14,9 @@ public class GizmosPlayerCam : MonoBehaviour
     public float GizmosYCrouch;*/
     public float Distance;
     public float _actualDistance;
-    private Vector3 _adjustedPosition;
+    public Transform head;
 
-    [SerializeField] private Transform _head;
+    private Vector3 _adjustedPosition;
     [SerializeField] private Transform _transformCamera;
     [SerializeField] private float _cameraDelaySpeed;
 
@@ -63,40 +63,40 @@ public class GizmosPlayerCam : MonoBehaviour
 
         if (MainGame.Instance.m_Photography.IsActive == false)
         {
-            if (_head == null || _transformCamera == null)
+            if (head == null || _transformCamera == null)
                 return;
 
             Vector3 rightDirection = _transformCamera.right;
-            Vector3 newPosition = _head.position + rightDirection * Distance;
+            Vector3 newPosition = head.position + rightDirection * Distance;
             transform.position = Vector3.Slerp(transform.position, newPosition, Time.deltaTime * _cameraDelaySpeed);
             //transform.position = newPosition;
         }
         else
         {
-            transform.position = new Vector3(_head.position.x, _head.position.y, _head.position.z);
+            transform.position = new Vector3(head.position.x, head.position.y, head.position.z);
         }
 
-        GizmoCollide();
+        //GizmoCollide();
     }
 
     private void GizmoCollide()
     {
         if (MainGame.Instance.m_Photography.IsActive == false)
         {
-            if (!_head)
+            if (!head)
                 return;
 
-            Vector3 desiredPosition = _head.position - transform.forward * _actualDistance;
-            Vector3 direction = (desiredPosition - _head.position).normalized;
+            Vector3 desiredPosition = head.position - transform.forward * _actualDistance;
+            Vector3 direction = (desiredPosition - head.position).normalized;
             RaycastHit hit;
 
-            if (Physics.Raycast(_head.position, direction, out hit, _actualDistance))
+            if (Physics.Raycast(head.position, direction, out hit, _actualDistance))
             {
-                if (hit.transform.gameObject != _head.gameObject && hit.transform.gameObject != _head.gameObject)
+                if (hit.transform.gameObject != head.gameObject && hit.transform.gameObject != head.gameObject)
                 {
                     Debug.Log("CAMERA IN WALL");
                     _actualDistance = Mathf.Clamp(hit.distance, 0.5f, Distance);
-                    _adjustedPosition = _head.position - direction * _actualDistance;
+                    _adjustedPosition = head.position - direction * _actualDistance;
                 }
             }
             else
@@ -106,7 +106,7 @@ public class GizmosPlayerCam : MonoBehaviour
             }
             transform.position = Vector3.Lerp(transform.position, _adjustedPosition, Time.deltaTime * 10f);
 
-            transform.LookAt(_head.position);
+            transform.LookAt(head.position);
         }
     }
 
