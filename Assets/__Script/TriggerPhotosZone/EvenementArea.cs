@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class EvenementArea : MonoBehaviour
 {
+    public IntentionList AreaType;
+
+
     [SerializeField] private float _timer;
     [SerializeField] private GameObject[] _areaElements;
     private bool _canStartTimer;
 
+ 
 
 
     // Start is called before the first frame update
