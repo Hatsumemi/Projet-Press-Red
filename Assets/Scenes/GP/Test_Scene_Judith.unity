@@ -1161,6 +1161,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc5709d0ea8a7c44bef705ca6a3dc17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &969514204 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8110560013818189296, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
+  m_PrefabInstance: {fileID: 2139539018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &975753318 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 462887983514370657, guid: 36848f65e678eb14a902210525e08da0, type: 3}
@@ -1612,6 +1617,11 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!4 &1183701349 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7525533168389158462, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
+  m_PrefabInstance: {fileID: 5406120229901790694}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1221789838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1936868647688098579, guid: 36848f65e678eb14a902210525e08da0, type: 3}
@@ -3166,6 +3176,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: inna001f
       objectReference: {fileID: 0}
+    - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
+      propertyPath: head
+      value: 
+      objectReference: {fileID: 969514204}
+    - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
+      propertyPath: _transformCamera
+      value: 
+      objectReference: {fileID: 1183701349}
     - target: {fileID: 4086687116704794359, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.98

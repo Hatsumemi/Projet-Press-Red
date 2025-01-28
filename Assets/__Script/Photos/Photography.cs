@@ -53,7 +53,6 @@ public class Photography : MonoBehaviour
             if (_objectivesAreOn[i] == true)
             {
                 _objectivesAreOn[i] = false;
-                break;
             }
         }
     }
