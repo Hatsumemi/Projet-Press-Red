@@ -1596,7 +1596,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1622,6 +1622,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7525533168389158462, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
   m_PrefabInstance: {fileID: 5406120229901790694}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1183701350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203777478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 10
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 3b622ce6b8ba8ac46896249297849aab, type: 2}
 --- !u!1 &1221789838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1936868647688098579, guid: 36848f65e678eb14a902210525e08da0, type: 3}
@@ -2143,9 +2160,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6381339932434383288, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6646601243200580846, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: m_Name
       value: Cam (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6646601243200580846, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7525533168389158462, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3491,6 +3516,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4526746452150936, guid: 36848f65e678eb14a902210525e08da0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 132367366483718255, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4133,6 +4162,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6646601243200580846, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1183701347}
+    - targetCorrespondingSourceObject: {fileID: 6646601243200580846, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1183701350}
   m_SourcePrefab: {fileID: 100100000, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
 --- !u!1001 &6460793583602153795
 PrefabInstance:
