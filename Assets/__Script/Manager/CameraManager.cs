@@ -131,7 +131,7 @@ public class CameraManager : MonoBehaviour
             RaycastHit hit2;
             RaycastHit hit3;
 
-            if (Physics.Raycast(LookAt.position, direction, out hit, Distance))
+            if (Physics.Raycast(LookAt.position, direction, out hit, Distance, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
             {
                 if (hit.transform.gameObject != LookAt.gameObject && hit.transform.gameObject != Player.gameObject && _camInWall) //== false)
                 {
@@ -145,7 +145,7 @@ public class CameraManager : MonoBehaviour
 
                 }
             }
-            else if (Physics.Raycast(transform.position, transform.right, out hit2, 1))
+            else if (Physics.Raycast(transform.position, transform.right, out hit2, 1, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
             {
                 if (hit2.transform.gameObject != LookAt.gameObject && hit2.transform.gameObject != Player.gameObject) //&& _camInWall == false)
                 {
@@ -159,7 +159,7 @@ public class CameraManager : MonoBehaviour
                     LookAt.gameObject.transform.position = new Vector3(headTransform.position.x, headTransform.position.y, headTransform.position.z);
                 }
             }
-            else if (Physics.Raycast(transform.position, -transform.right, out hit3, 1))
+            else if (Physics.Raycast(transform.position, -transform.right, out hit3, 1, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
             {
                 if (hit3.transform.gameObject != LookAt.gameObject && hit3.transform.gameObject != Player.gameObject) //&& _camInWall == false)
                 {

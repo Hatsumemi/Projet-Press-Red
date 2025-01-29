@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc2e6f3e15d47c4aa8cd10a6f79efb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
+  Type: 9
 --- !u!1 &530456891
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,10 +907,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaType: {fileID: 583477530}
-  _timer: 10
+  _player: {fileID: 312857381}
+  _timer: 30
   _areaElements:
   - {fileID: 579415881}
   - {fileID: 1334069349}
+  _objective: {fileID: 579415881}
+  _distanceIntentions:
+  - _distance: 3
+    distanceIntentionType: 1
+  - _distance: 6
+    distanceIntentionType: 2
+  - _distance: 9
+    distanceIntentionType: 3
+  IsInEmotionalZone: 0
 --- !u!114 &583477530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2767,7 +2777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
       propertyPath: Distance
-      value: 0.5
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 4080449955922691222, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
       propertyPath: _distance

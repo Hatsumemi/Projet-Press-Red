@@ -7,7 +7,7 @@ using UnityEngine;
 public class IntentionZone : MonoBehaviour
 {
     public IntentionList PhotoIntention;
-    private IntentionList.EntityType originalEntityType;
+    private IntentionList.IntentionType _originalEntityType;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,8 @@ public class IntentionZone : MonoBehaviour
         if (other.gameObject.GetComponentInParent<PlayerController>() != null)
         {
             EvenementArea eventArea = gameObject.GetComponentInParent<EvenementArea>();
-            originalEntityType = eventArea.AreaType.Type;
+            eventArea.IsInEmotionalZone = true;
+            _originalEntityType = eventArea.AreaType.Type;
             eventArea.AreaType.Type = PhotoIntention.Type;
         }
     }
@@ -37,7 +38,8 @@ public class IntentionZone : MonoBehaviour
         if (other.gameObject.GetComponentInParent<PlayerController>() != null)
         {
             EvenementArea eventArea = gameObject.GetComponentInParent<EvenementArea>();
-            eventArea.AreaType.Type = originalEntityType;
+            eventArea.IsInEmotionalZone = false;
+            eventArea.AreaType.Type = _originalEntityType;
         }
     }
 }

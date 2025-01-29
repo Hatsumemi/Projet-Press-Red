@@ -7,8 +7,8 @@ using UnityEngine;
 public class IntentionList : MonoBehaviour
 {
 
-    public EntityType Type;
-    public enum EntityType
+    public IntentionType Type;
+    public enum IntentionType
     {
         None,
         Sensational,
