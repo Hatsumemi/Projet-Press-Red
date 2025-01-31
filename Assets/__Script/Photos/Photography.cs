@@ -9,17 +9,21 @@ public class Photography : MonoBehaviour
 
     [Header("Values")]
     public Camera Camera;
+    public float NormalFov = 60;
     [HideInInspector] public bool IsActive = false;
     private int _photoCount;
     private bool _takePhoto = false;
 
 
     [Header("Photographies")]
+    public float MinFoV;
+    public float MaxFoV;
+    public float Sensitivity;
     public List<GameObject> Objetives;
     public Image Flash;
     [SerializeField] private List<Image> _photos;
-    private Texture2D _photoTakenTexture;
     [SerializeField] private List<bool> _objectivesAreOn = new List<bool> { false, false, false };
+    private Texture2D _photoTakenTexture;
 
     void Start()
     {
@@ -29,16 +33,27 @@ public class Photography : MonoBehaviour
 
     void Update()
     {
-        if (IsActive && Input.GetMouseButtonDown(0))
+        if (IsActive)
         {
-            if (_takePhoto == false)
+            var fov = Camera.fieldOfView;
+            fov += Input.GetAxis("Mouse ScrollWheel") * Sensitivity;
+            fov = Mathf.Clamp(fov, MinFoV, MaxFoV);
+            Camera.fieldOfView = fov;
+
+            if (Input.GetMouseButtonDown(0))
             {
-                if (_photoCount < _photos.Count)
-                    StartCoroutine(Photo());
-                else
-                    Debug.Log("You can't take anymore photos.");
+                if (_takePhoto == false)
+                {
+                    if (_photoCount < _photos.Count)
+                        StartCoroutine(Photo());
+                    else
+                        Debug.Log("You can't take anymore photos.");
+                }
             }
         }
+
+        if (IsActive == false)
+            Camera.fieldOfView = NormalFov;
     }
 
     IEnumerator WaitToPhotograph()
