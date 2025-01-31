@@ -19,6 +19,8 @@ public class EvenementArea : MonoBehaviour
 
     [HideInInspector] public bool IsInEmotionalZone = false;
 
+    [SerializeField] private MonsterMovement monsterMovement;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +68,7 @@ public class EvenementArea : MonoBehaviour
         if (other.gameObject.GetComponentInParent<PlayerController>() != null)
         {
             _canStartTimer = true;
+            monsterMovement.CanGoObjective = true;
         }
     }
 }
