@@ -3967,7 +3967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7525533168389158462, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8833161
+      value: 0.9286802
       objectReference: {fileID: 0}
     - target: {fileID: 7525533168389158462, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3979,7 +3979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7525533168389158462, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.46877795
+      value: -0.37088162
       objectReference: {fileID: 0}
     - target: {fileID: 7525533168389158462, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3991,7 +3991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7525533168389158462, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 55.91
+      value: -43.54
       objectReference: {fileID: 0}
     - target: {fileID: 8526725155812041158, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: Flash
@@ -4058,6 +4058,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8896103193508383215, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
+      propertyPath: AngleZ
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896103193508383215, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: LookAt
       value: 
       objectReference: {fileID: 2020517096}
@@ -4065,6 +4069,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 855665136}
+    - target: {fileID: 8896103193508383215, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
+      propertyPath: MaxAngle
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896103193508383215, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
+      propertyPath: MinAngle
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -35,6 +35,10 @@ public class CameraManager : MonoBehaviour
 
     private Ray ray2;
 
+    [Space(10)] [Header("Changing Angle for Photography")]
+    public float AngleZ;
+    public float MaxAngle;
+    public float MinAngle;
 
     float differenceX;
     float differenceY;
@@ -72,14 +76,20 @@ public class CameraManager : MonoBehaviour
             //{
             //if (_camInWall == false)
             //{
-                Debug.Log("Camera mooving");
-                Vector3 Direction = new Vector3(0, 0, -Distance);
+            Debug.Log("Camera mooving");
+            Vector3 Direction = new Vector3(0, 0, -Distance);
+            transform.position = LookAt.position + Direction; // rotation * Direction
+            if (MainGame.Instance.m_Photography.IsActive)
+                transform.LookAt(LookAt.position,
+                new Vector3(
+                    Mathf.Cos(Mathf.Deg2Rad * AngleZ),
+                    Mathf.Sin(Mathf.Deg2Rad * AngleZ), 0));
+            else
+            {
                 Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
                 transform.position = LookAt.position + rotation * Direction;
-
                 transform.LookAt(LookAt.position);
-            //}
-            //}
+            }
         }
 
         CameraCollide();
@@ -116,7 +126,6 @@ public class CameraManager : MonoBehaviour
     }
 
 
-
     private void CameraCollide()
     {
         if (MainGame.Instance.m_Photography.IsActive == false) //(differenceX != 0 || differenceY != 0))
@@ -131,9 +140,11 @@ public class CameraManager : MonoBehaviour
             RaycastHit hit2;
             RaycastHit hit3;
 
-            if (Physics.Raycast(LookAt.position, direction, out hit, Distance, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(LookAt.position, direction, out hit, Distance, LayerMask.GetMask("Default"),
+                    QueryTriggerInteraction.Ignore))
             {
-                if (hit.transform.gameObject != LookAt.gameObject && hit.transform.gameObject != Player.gameObject && _camInWall) //== false)
+                if (hit.transform.gameObject != LookAt.gameObject && hit.transform.gameObject != Player.gameObject &&
+                    _camInWall) //== false)
                 {
                     _camInWall = true;
                     Debug.Log("CAMERA IN WALL");
@@ -141,13 +152,15 @@ public class CameraManager : MonoBehaviour
                     _adjustedPosition = LookAt.position - direction * Distance;
 
                     Transform headTransform = LookAt.gameObject.GetComponent<GizmosPlayerCam>().head;
-                    LookAt.gameObject.transform.position = new Vector3(headTransform.position.x, headTransform.position.y, headTransform.position.z);
-
+                    LookAt.gameObject.transform.position = new Vector3(headTransform.position.x,
+                        headTransform.position.y, headTransform.position.z);
                 }
             }
-            else if (Physics.Raycast(transform.position, transform.right, out hit2, 1, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
+            else if (Physics.Raycast(transform.position, transform.right, out hit2, 1, LayerMask.GetMask("Default"),
+                         QueryTriggerInteraction.Ignore))
             {
-                if (hit2.transform.gameObject != LookAt.gameObject && hit2.transform.gameObject != Player.gameObject) //&& _camInWall == false)
+                if (hit2.transform.gameObject != LookAt.gameObject &&
+                    hit2.transform.gameObject != Player.gameObject) //&& _camInWall == false)
                 {
                     Debug.Log("CAMERA IN WALL");
 
@@ -156,12 +169,15 @@ public class CameraManager : MonoBehaviour
                     _adjustedPosition = LookAt.position - direction * Distance;
 
                     Transform headTransform = LookAt.gameObject.GetComponent<GizmosPlayerCam>().head;
-                    LookAt.gameObject.transform.position = new Vector3(headTransform.position.x, headTransform.position.y, headTransform.position.z);
+                    LookAt.gameObject.transform.position = new Vector3(headTransform.position.x,
+                        headTransform.position.y, headTransform.position.z);
                 }
             }
-            else if (Physics.Raycast(transform.position, -transform.right, out hit3, 1, LayerMask.GetMask("Default"), QueryTriggerInteraction.Ignore))
+            else if (Physics.Raycast(transform.position, -transform.right, out hit3, 1, LayerMask.GetMask("Default"),
+                         QueryTriggerInteraction.Ignore))
             {
-                if (hit3.transform.gameObject != LookAt.gameObject && hit3.transform.gameObject != Player.gameObject) //&& _camInWall == false)
+                if (hit3.transform.gameObject != LookAt.gameObject &&
+                    hit3.transform.gameObject != Player.gameObject) //&& _camInWall == false)
                 {
                     _camInWall = true;
                     Debug.Log("CAMERA IN WALL");
@@ -169,7 +185,8 @@ public class CameraManager : MonoBehaviour
                     _adjustedPosition = LookAt.position - direction * Distance;
 
                     Transform headTransform = LookAt.gameObject.GetComponent<GizmosPlayerCam>().head;
-                    LookAt.gameObject.transform.position = new Vector3(headTransform.position.x, headTransform.position.y, headTransform.position.z);
+                    LookAt.gameObject.transform.position = new Vector3(headTransform.position.x,
+                        headTransform.position.y, headTransform.position.z);
                 }
             }
             else
@@ -182,8 +199,9 @@ public class CameraManager : MonoBehaviour
 
 
             Vector3 newPos = Vector3.Lerp(transform.position, _adjustedPosition, Time.deltaTime * 10f);
-            
-            float distanceActualPosAndNewPos = Vector3.Distance(newPos, transform.position); // a poursuivre ou a retirer
+
+            float distanceActualPosAndNewPos =
+                Vector3.Distance(newPos, transform.position); // a poursuivre ou a retirer
 
             if (distanceActualPosAndNewPos > 10)
             {
@@ -194,8 +212,6 @@ public class CameraManager : MonoBehaviour
 
             //RaycastHit hit2;
             //RaycastHit hit3;
-
-
         }
     }
 
@@ -203,9 +219,10 @@ public class CameraManager : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(LookAt.position, LookAt.position + (transform.position - LookAt.position).normalized * Distance);
+        Gizmos.DrawLine(LookAt.position,
+            LookAt.position + (transform.position - LookAt.position).normalized * Distance);
 
         Gizmos.DrawLine(transform.position, transform.position + transform.right * 1);
-        Gizmos.DrawLine(transform.position, transform.position + - transform.right * 1);
+        Gizmos.DrawLine(transform.position, transform.position + -transform.right * 1);
     }
 }
