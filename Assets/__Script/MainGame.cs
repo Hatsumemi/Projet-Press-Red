@@ -63,7 +63,7 @@ public class MainGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             OkCheck();
         }
@@ -72,7 +72,27 @@ public class MainGame : MonoBehaviour
         {
             //Debug.Log("test");
             m_CameraManager.ChangeCam();
-            TextPhoto.enabled = !MainGame.Instance.m_Photography.IsActive;
+            TextPhoto.enabled = !m_Photography.IsActive;
+            m_CameraManager.AngleZ = 90;
+        }
+
+        if (m_Photography.IsActive)
+        {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                Debug.Log("'A' has been pressed");
+                m_CameraManager.AngleZ += Time.deltaTime * m_CameraManager.Sensitivity;
+                if (m_CameraManager.AngleZ >= m_CameraManager.MaxAngle)
+                    m_CameraManager.AngleZ = m_CameraManager.MaxAngle;
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                Debug.Log("'E' has been pressed");
+                m_CameraManager.AngleZ -= Time.deltaTime * m_CameraManager.Sensitivity;
+                if (m_CameraManager.AngleZ <= m_CameraManager.MinAngle)
+                    m_CameraManager.AngleZ = m_CameraManager.MinAngle;
+            }
         }
         
         if (Input.GetKeyDown(KeyCode.J))

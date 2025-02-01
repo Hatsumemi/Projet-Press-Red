@@ -37,9 +37,9 @@ public class CameraManager : MonoBehaviour
 
     [Space(10)] [Header("Changing Angle for Photography")]
     public float AngleZ;
-
     public float MaxAngle;
     public float MinAngle;
+    public float Sensitivity;
 
     float differenceX;
     float differenceY;
