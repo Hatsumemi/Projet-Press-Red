@@ -23,12 +23,16 @@ public class Photography : MonoBehaviour
     public Image Flash;
     [SerializeField] private List<Image> _photos;
     [SerializeField] private List<bool> _objectivesAreOn = new List<bool> { false, false, false };
+    public GameObject TriggerDeath;
+    public GameObject Trigger;
     private Texture2D _photoTakenTexture;
 
     void Start()
     {
         Flash.color = new Color(Flash.color.r, Flash.color.g, Flash.color.b, 0f);
         _photoTakenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        TriggerDeath.SetActive(false);
+        Trigger.SetActive(false);
     }
 
     void Update()
@@ -70,6 +74,9 @@ public class Photography : MonoBehaviour
                 _objectivesAreOn[i] = false;
             }
         }
+        yield return new WaitForSeconds(5);
+        TriggerDeath.SetActive(false);
+        Trigger.SetActive(false);
     }
 
     IEnumerator Photo()
@@ -123,7 +130,8 @@ public class Photography : MonoBehaviour
                 break;
             }
         }
-
+        TriggerDeath.SetActive(true);
+        Trigger.SetActive(true);
         StartCoroutine(WaitToPhotograph());
     }
 

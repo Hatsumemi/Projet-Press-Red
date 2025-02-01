@@ -1033,6 +1033,59 @@ MonoBehaviour:
   HasObjectivesIn: 
   PicOutline: {fileID: 0}
   Image: {fileID: 0}
+--- !u!1 &733307076
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 733307077}
+  - component: {fileID: 733307078}
+  m_Layer: 0
+  m_Name: TriggerZoneNoise
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &733307077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733307076}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 855665136}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &733307078
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733307076}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 8
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!1 &742536364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7976394633673877945, guid: 36848f65e678eb14a902210525e08da0, type: 3}
@@ -2459,6 +2512,59 @@ MonoBehaviour:
   - {fileID: 1413857118}
   - {fileID: 461225140}
   - {fileID: 1380471443}
+--- !u!1 &1687316011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687316012}
+  - component: {fileID: 1687316013}
+  m_Layer: 0
+  m_Name: TriggerZoneNoiseDeath
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1687316012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687316011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 855665136}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1687316013
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687316011}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 4
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!114 &1701056470 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2698504840217290391, guid: 36848f65e678eb14a902210525e08da0, type: 3}
@@ -3145,7 +3251,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4086687116704794359, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1687316012}
+    - targetCorrespondingSourceObject: {fileID: 4086687116704794359, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 733307077}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4976b34a1ed815046a2acb6c39e6d8d1, type: 3}
 --- !u!1 &2141375753 stripped
@@ -4006,6 +4118,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8526725155812041158, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
+      propertyPath: Trigger
+      value: 
+      objectReference: {fileID: 733307076}
+    - target: {fileID: 8526725155812041158, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: Objetive
       value: 
       objectReference: {fileID: 2037953630}
@@ -4013,6 +4129,10 @@ PrefabInstance:
       propertyPath: Sensitivity
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 8526725155812041158, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
+      propertyPath: TriggerDeath
+      value: 
+      objectReference: {fileID: 1687316011}
     - target: {fileID: 8526725155812041158, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: Objetives.Array.size
       value: 3
