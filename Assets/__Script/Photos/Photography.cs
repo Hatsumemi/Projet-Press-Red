@@ -6,17 +6,14 @@ using UnityEngine.UI;
 
 public class Photography : MonoBehaviour
 {
-
-    [Header("Values")]
-    public Camera Camera;
+    [Header("Values")] public Camera Camera;
     public float NormalFov = 60;
     [HideInInspector] public bool IsActive = false;
     private int _photoCount;
     private bool _takePhoto = false;
 
 
-    [Header("Photographies")]
-    public float MinFoV;
+    [Header("Photographies")] public float MinFoV;
     public float MaxFoV;
     public float Sensitivity;
     public List<GameObject> Objetives;
@@ -26,6 +23,7 @@ public class Photography : MonoBehaviour
     public GameObject TriggerDeath;
     public GameObject Trigger;
     private Texture2D _photoTakenTexture;
+    private bool _flashActivated = false;
 
     void Start()
     {
@@ -54,6 +52,9 @@ public class Photography : MonoBehaviour
                         Debug.Log("You can't take anymore photos.");
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.T))
+                _flashActivated = !_flashActivated;
         }
 
         if (IsActive == false)
@@ -62,11 +63,14 @@ public class Photography : MonoBehaviour
 
     IEnumerator WaitToPhotograph()
     {
-        Flash.DOFade(1, 0.2f);
-        yield return new WaitForSeconds(0.2f);
+        if (_flashActivated)
+        {
+            Flash.DOFade(1, 0.2f);
+            yield return new WaitForSeconds(0.2f);
+            
+            Flash.DOFade(0, 0.2f);
+        }
         _photoCount++;
-        _takePhoto = false;
-        Flash.DOFade(0, 0.2f);
         for (int i = 0; i < _objectivesAreOn.Count; i++)
         {
             if (_objectivesAreOn[i] == true)
@@ -74,9 +78,11 @@ public class Photography : MonoBehaviour
                 _objectivesAreOn[i] = false;
             }
         }
+
         yield return new WaitForSeconds(5);
         TriggerDeath.SetActive(false);
         Trigger.SetActive(false);
+        _takePhoto = false;
     }
 
     IEnumerator Photo()
@@ -112,8 +118,8 @@ public class Photography : MonoBehaviour
         _takePhoto = true;
 
         Sprite PhotoSprite = Sprite.Create(_photoTakenTexture, new Rect(0.0f, 0.0f,
-                                           _photoTakenTexture.width, _photoTakenTexture.height),
-                                           new Vector2(0.5f, 0.5f), 100.0f);
+                _photoTakenTexture.width, _photoTakenTexture.height),
+            new Vector2(0.5f, 0.5f), 100.0f);
         PhotoSprite.name = "photo" + _photoCount;
         foreach (Image image in _photos)
         {
@@ -127,12 +133,13 @@ public class Photography : MonoBehaviour
                         image.GetComponent<Picture>().HasObjectivesIn[i] = true;
                     i++;
                 }
+
                 break;
             }
         }
+
         TriggerDeath.SetActive(true);
         Trigger.SetActive(true);
         StartCoroutine(WaitToPhotograph());
     }
-
 }
