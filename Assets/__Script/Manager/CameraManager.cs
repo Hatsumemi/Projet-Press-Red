@@ -37,6 +37,7 @@ public class CameraManager : MonoBehaviour
 
     [Space(10)] [Header("Changing Angle for Photography")]
     public float AngleZ;
+
     public float MaxAngle;
     public float MinAngle;
 
@@ -78,12 +79,15 @@ public class CameraManager : MonoBehaviour
             //{
             Debug.Log("Camera mooving");
             Vector3 Direction = new Vector3(0, 0, -Distance);
-            transform.position = LookAt.position + Direction; // rotation * Direction
             if (MainGame.Instance.m_Photography.IsActive)
+            {
+                Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
+                transform.position = LookAt.position + rotation * Direction;
                 transform.LookAt(LookAt.position,
-                new Vector3(
-                    Mathf.Cos(Mathf.Deg2Rad * AngleZ),
-                    Mathf.Sin(Mathf.Deg2Rad * AngleZ), 0));
+                    new Vector3(
+                        Mathf.Cos(Mathf.Deg2Rad * AngleZ),
+                        Mathf.Sin(Mathf.Deg2Rad * AngleZ), 0));
+            }
             else
             {
                 Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
