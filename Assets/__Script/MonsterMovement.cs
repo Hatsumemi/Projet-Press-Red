@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,14 +35,6 @@ public class MonsterMovement : MonoBehaviour
     
     public float moveSpeed;
 
-    /*
-    [Header ("Hidding Points")]
-    [SerializeField] private List<Transform> hiddingPointTransform;
-    private Transform closestHiddingPoint = null;
-    [SerializeField] private bool arrivedHiddingPoint = true;
-    [SerializeField] private float timerHiddingPoint = 0f;
-    */
-
     [Header("Patrols Points")]
     [SerializeField] private List<GameObject> patrolsPointsGameObjects;
     [SerializeField] private List<GameObject> VisitedPatrolsPoints;
@@ -57,10 +50,12 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField] private GameObject _objectivePoint;
     private bool _arrivedOnObjective = false;
 
-    /*
-    [Header("Music Detection")]
-    public AudioSource musicBox;
-    */
+    [SerializeField] private GameObject _otherTransactor;
+
+    [HideInInspector] public bool CanExit = false;
+
+    [SerializeField] private GameObject _exitPoint;
+
 
     void Awake()
     {
@@ -79,14 +74,25 @@ public class MonsterMovement : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (CanGoObjective == false)
+        if (CanGoObjective == false && CanExit == false)
         {
             PatrolingPoint();
         }
 
-        if (CanGoObjective == true)
+        if (CanGoObjective == true && CanExit == false)
         {
             GoObjectivePoint();
+        }
+
+
+        if (Vector3.Distance(transform.position, _objectivePoint.transform.position) < 2)
+        {
+            transform.LookAt(new Vector3( _otherTransactor.transform.position.x, _otherTransactor.transform.position.y, _otherTransactor.transform.position.z));
+        }
+
+        if (CanExit == true)
+        {
+            GoExitPoint();
         }
     }
 
@@ -201,6 +207,16 @@ public class MonsterMovement : MonoBehaviour
         if (Vector3.Distance(transform.position, _objectivePoint.transform.position) < 2)
         {
             _arrivedOnObjective = true;
+        }
+    }
+
+
+    private void GoExitPoint()
+    {
+        agent.SetDestination(_exitPoint.transform.position);
+        if (Vector3.Distance(transform.position, _exitPoint.transform.position) < 2)
+        {
+            Destroy(gameObject);
         }
     }
 }

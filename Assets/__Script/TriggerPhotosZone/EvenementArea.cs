@@ -19,7 +19,11 @@ public class EvenementArea : MonoBehaviour
 
     [HideInInspector] public bool IsInEmotionalZone = false;
 
-    [SerializeField] private MonsterMovement monsterMovement;
+    [SerializeField] private MonsterMovement[] monstersMovements;
+
+    [SerializeField] private GameObject _evidence;
+    [SerializeField] private Transform _eviddencePos;
+    private bool _canSpawnEvidence = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,9 +40,13 @@ public class EvenementArea : MonoBehaviour
 
             if (_timer < 0 )
             {
+                for (int y = 0; y < monstersMovements.Length; y++)
+                {
+                    monstersMovements[y].CanExit = true;
+                }
                 for (int i = 0; i < _areaElements.Length; i++)
                 {
-                    Destroy(_areaElements[i]);
+                    //Destroy(_areaElements[i]);
                     Destroy(gameObject);
                 }
             }
@@ -60,6 +68,14 @@ public class EvenementArea : MonoBehaviour
                 }
             }
         }
+
+        if (_timer < 20 && _canSpawnEvidence == false)
+        {
+            _canSpawnEvidence = true;
+            GameObject _evidenceInst = Instantiate(_evidence);
+            Destroy(_evidenceInst, 10);
+        }
+
     }
 
 
@@ -68,7 +84,10 @@ public class EvenementArea : MonoBehaviour
         if (other.gameObject.GetComponentInParent<PlayerController>() != null)
         {
             _canStartTimer = true;
-            monsterMovement.CanGoObjective = true;
+            for (int i = 0; i < monstersMovements.Length; i++)
+            {
+                monstersMovements[i].CanGoObjective = true;
+            }
         }
     }
 }
