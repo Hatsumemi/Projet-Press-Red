@@ -2941,7 +2941,7 @@ Cloth:
   m_UseGravity: 1
   m_Damping: 0.15
   m_ExternalAcceleration: {x: 0, y: 0, z: 0}
-  m_RandomAcceleration: {x: 0, y: 0, z: 0}
+  m_RandomAcceleration: {x: 0.5, y: 0, z: 0.3}
   m_WorldVelocityScale: 0.2
   m_WorldAccelerationScale: 0.5
   m_Friction: 1
