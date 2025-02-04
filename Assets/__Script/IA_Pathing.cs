@@ -48,6 +48,9 @@ public class IA_Pathing : MonoBehaviour
     [SerializeField] private bool _goAndBackMode = false;
     private int patrolIndex = 0;
 
+
+    [SerializeField] private bool _isMainCharacter = false;
+
     [HideInInspector] public bool CanGoObjective = false;
     [SerializeField] private GameObject _objectivePoint;
     private bool _arrivedOnObjective = false;
@@ -57,6 +60,7 @@ public class IA_Pathing : MonoBehaviour
     [HideInInspector] public bool CanExit = false;
 
     [SerializeField] private GameObject _exitPoint;
+
 
 
     void Awake()
