@@ -18,6 +18,7 @@ public class Photography : MonoBehaviour
     public float Sensitivity;
     public List<GameObject> Objetives;
     public Image Flash;
+    public GameObject FlashLight;
     [SerializeField] private List<Image> _photos;
     [SerializeField] private List<bool> _objectivesAreOn = new List<bool> { false, false, false };
     public GameObject TriggerDeath;
@@ -28,6 +29,7 @@ public class Photography : MonoBehaviour
     void Start()
     {
         Flash.color = new Color(Flash.color.r, Flash.color.g, Flash.color.b, 0f);
+        FlashLight.SetActive(false);
         _photoTakenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
         TriggerDeath.SetActive(false);
         Trigger.SetActive(false);
@@ -65,10 +67,12 @@ public class Photography : MonoBehaviour
     {
         if (_flashActivated)
         {
+            yield return new WaitForSeconds(0.2f);
             Flash.DOFade(1, 0.2f);
             yield return new WaitForSeconds(0.2f);
-            
             Flash.DOFade(0, 0.2f);
+            yield return new WaitForSeconds(0.5f);
+            FlashLight.SetActive(false);
         }
         _photoCount++;
         for (int i = 0; i < _objectivesAreOn.Count; i++)
@@ -87,6 +91,7 @@ public class Photography : MonoBehaviour
 
     IEnumerator Photo()
     {
+        
         yield return new WaitForEndOfFrame();
         foreach (var item in Objetives)
         {
@@ -102,10 +107,11 @@ public class Photography : MonoBehaviour
                 }
             }
         }
+        if (_flashActivated)
+            FlashLight.SetActive(true);
+        Rect regionToCapture = new Rect(0, 0, 500, 500);
 
-        Rect regionToCapture = new Rect(0, 0, Screen.width, Screen.height);
-
-        _photoTakenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        _photoTakenTexture = new Texture2D(500, 500, TextureFormat.RGB24, false);
 
         _photoTakenTexture.ReadPixels(regionToCapture, 0, 0, false);
         _photoTakenTexture.Apply();
@@ -140,6 +146,7 @@ public class Photography : MonoBehaviour
 
         TriggerDeath.SetActive(true);
         Trigger.SetActive(true);
+        
         StartCoroutine(WaitToPhotograph());
     }
 }
