@@ -19,7 +19,7 @@ public class EvenementArea : MonoBehaviour
 
     [HideInInspector] public bool IsInEmotionalZone = false;
 
-    [SerializeField] private MonsterMovement[] monstersMovements;
+    [SerializeField] private IA_Pathing[] _iaPathing;
 
     [SerializeField] private GameObject _evidence;
     [SerializeField] private Transform _eviddencePos;
@@ -40,9 +40,9 @@ public class EvenementArea : MonoBehaviour
 
             if (_timer < 0 )
             {
-                for (int y = 0; y < monstersMovements.Length; y++)
+                for (int y = 0; y < _iaPathing.Length; y++)
                 {
-                    monstersMovements[y].CanExit = true;
+                    _iaPathing[y].CanExit = true;
                 }
                 for (int i = 0; i < _areaElements.Length; i++)
                 {
@@ -72,7 +72,7 @@ public class EvenementArea : MonoBehaviour
         if (_timer < 20 && _canSpawnEvidence == false)
         {
             _canSpawnEvidence = true;
-            GameObject _evidenceInst = Instantiate(_evidence);
+            GameObject _evidenceInst = Instantiate(_evidence, _eviddencePos.transform.position, Quaternion.identity);
             Destroy(_evidenceInst, 10);
         }
 
@@ -84,9 +84,9 @@ public class EvenementArea : MonoBehaviour
         if (other.gameObject.GetComponentInParent<PlayerController>() != null)
         {
             _canStartTimer = true;
-            for (int i = 0; i < monstersMovements.Length; i++)
+            for (int i = 0; i < _iaPathing.Length; i++)
             {
-                monstersMovements[i].CanGoObjective = true;
+                _iaPathing[i].CanGoObjective = true;
             }
         }
     }

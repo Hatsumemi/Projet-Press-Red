@@ -12,22 +12,24 @@ using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static UnityEngine.UI.GridLayoutGroup;
 
-public class MonsterMovement : MonoBehaviour
+public class IA_Pathing : MonoBehaviour
 {
     public NavMeshAgent agent;
     //public Transform player;
-    public LayerMask WhatIsGround, whatIsPlayer;
+    public LayerMask WhatIsGround; //, whatIsPlayer;
 
     //public Vector3 walkPoint;
     //bool walkPointSet;
     
-    public float timeBetweenAttacks;
-    private bool alreadyAttacked;
+    //public float timeBetweenAttacks;
+    //private bool alreadyAttacked;
 
+    /*
     [Header("Ranges")]
     public float sightRange, attackRange;
     private float startSightRange;
     private bool playerInSightRange, playerInAttackRange;
+    */
 
     [Header("Path timer")]
     public float pathUpdateDelay = 0.2f;
@@ -38,8 +40,8 @@ public class MonsterMovement : MonoBehaviour
     [Header("Patrols Points")]
     [SerializeField] private List<GameObject> patrolsPointsGameObjects;
     [SerializeField] private List<GameObject> VisitedPatrolsPoints;
-    [SerializeField] private GameObject closestPatrolPoint = null;
-    [SerializeField] private bool arrivedPatrolPoint = true;
+    private GameObject closestPatrolPoint = null;
+    private bool arrivedPatrolPoint = true;
 
 
     [SerializeField] private bool _closestPointOrder = false;
@@ -65,7 +67,7 @@ public class MonsterMovement : MonoBehaviour
         //DetectHidingPoints();
         //DetectPatrolPoints();
 
-        startSightRange = sightRange;
+        //startSightRange = sightRange;
     }
 
 

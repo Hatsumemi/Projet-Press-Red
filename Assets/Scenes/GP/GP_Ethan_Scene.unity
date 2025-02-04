@@ -2341,15 +2341,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   WhatIsGround:
-    serializedVersion: 2
     m_Bits: 1024
   whatIsPlayer:
-    serializedVersion: 2
     m_Bits: 0
   timeBetweenAttacks: 10
+  alreadyAttacked: 0
   sightRange: 10
   attackRange: 3
+  startSightRange: 0
+  playerInSightRange: 0
+  playerInAttackRange: 0
   pathUpdateDelay: 0.2
+  timer: 0
   moveSpeed: 3
   patrolsPointsGameObjects:
   - {fileID: 611176185}
@@ -2361,8 +2364,10 @@ MonoBehaviour:
   arrivedPatrolPoint: 1
   _closestPointOrder: 1
   _goAndBackMode: 0
+  patrolIndex: 0
   CanGoObjective: 0
   _objectivePoint: {fileID: 106885183}
+  _arrivedOnObjective: 0
   _otherTransactor: {fileID: 2063491468}
   CanExit: 0
   _exitPoint: {fileID: 1173252014}
@@ -4108,15 +4113,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   WhatIsGround:
-    serializedVersion: 2
     m_Bits: 1024
   whatIsPlayer:
-    serializedVersion: 2
     m_Bits: 0
   timeBetweenAttacks: 10
+  alreadyAttacked: 0
   sightRange: 10
   attackRange: 3
+  startSightRange: 0
+  playerInSightRange: 0
+  playerInAttackRange: 0
   pathUpdateDelay: 0.2
+  timer: 0
   moveSpeed: 3
   patrolsPointsGameObjects:
   - {fileID: 272618137}
@@ -4128,8 +4136,10 @@ MonoBehaviour:
   arrivedPatrolPoint: 1
   _closestPointOrder: 0
   _goAndBackMode: 0
+  patrolIndex: 0
   CanGoObjective: 0
   _objectivePoint: {fileID: 963520456}
+  _arrivedOnObjective: 0
   _otherTransactor: {fileID: 1079765683}
   CanExit: 0
   _exitPoint: {fileID: 2035287383}
