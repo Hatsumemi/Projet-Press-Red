@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class Photography : MonoBehaviour
@@ -39,6 +40,12 @@ public class Photography : MonoBehaviour
     {
         if (IsActive)
         {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                var focal = gameObject.GetComponent<DepthOfField>().focalLength;
+                //focal += Input.GetAxis("Mouse ScrollWheel") * Sensitivity;
+                
+            }
             var fov = Camera.fieldOfView;
             fov += Input.GetAxis("Mouse ScrollWheel") * Sensitivity;
             fov = Mathf.Clamp(fov, MinFoV, MaxFoV);
