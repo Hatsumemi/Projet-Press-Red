@@ -11062,7 +11062,7 @@ MonoBehaviour:
   _areaElements:
   - {fileID: 0}
   - {fileID: 0}
-  _objective: {fileID: 0}
+  _objective: {fileID: 663044933}
   _distanceIntentions:
   - _distance: 3
     distanceIntentionType: 1
