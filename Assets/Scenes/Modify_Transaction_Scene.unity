@@ -18991,6 +18991,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 850748489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &465272898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6665169456110803295, guid: 9d80c2bb359dff744bc28300b7d5586c, type: 3}
+  m_PrefabInstance: {fileID: 734471310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &468472852
 Mesh:
   m_ObjectHideFlags: 0
@@ -30577,7 +30582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4526746452150936, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6747591691133642790, guid: 36848f65e678eb14a902210525e08da0, type: 3}
       propertyPath: m_Pivot.x
@@ -42154,11 +42159,11 @@ PrefabInstance:
     - target: {fileID: 8526725155812041158, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: Objetives.Array.data[0]
       value: 
-      objectReference: {fileID: 1083176218}
+      objectReference: {fileID: 1731184481}
     - target: {fileID: 8526725155812041158, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: Objetives.Array.data[1]
       value: 
-      objectReference: {fileID: 663044933}
+      objectReference: {fileID: 465272898}
     - target: {fileID: 8896103193508383215, guid: 3447133c5c29ac34582ef07addc8d838, type: 3}
       propertyPath: FOVFPP
       value: 60
@@ -60258,6 +60263,11 @@ Transform:
   - {fileID: 1469393186}
   m_Father: {fileID: 938710932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1731184481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6665169456110803295, guid: 9d80c2bb359dff744bc28300b7d5586c, type: 3}
+  m_PrefabInstance: {fileID: 1790790295}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1736793990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c20fa8219bda2e1469569ddc7dc8defd, type: 3}
